@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <title>TRUE ONLINE - MY PLAN</title>
+</head>
+<body>
+  <section id="heroBanner" class="bg-gray-300 min-h-[630px]"></section>
+  <section id="myplanFormBody" class="py-10">
+    <div class="container">
+      <img src="./assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN" class="w-[360px] h-auto object-cover mx-auto">
+      <h2 class="text-[40px] font-bold text-flowkit-red leading-normal text-center">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
+      <h3 class="text-[32px] font-medium text-charcoal-grey leading-normal text-center">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</h3>
+
+      <form action="">
+        <div id="contract_period_group">
+          <div class="group-title flex items-center gap-2">
+            <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+            <h3 class="gradient-text text-2xl font-bold leading-normal text-center">เลือกความเร็วและระยะสัญญา</h3>
+          </div>
+          <div class="group-content">
+            <div class="flex flex-col gap-4 mt-6">
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="planOption" value="option1" class="accent-flowkit-red w-5 h-5" checked>
+                <span class="text-lg">โปร 1 : 500/500 Mbps (ไม่ติดสัญญา)</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="planOption" value="option2" class="accent-flowkit-red w-5 h-5">
+                <span class="text-lg">โปร 2 : 1,000/500 Mbps (สัญญา 12 เดือน)</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="planOption" value="option3" class="accent-flowkit-red w-5 h-5">
+                <span class="text-lg">โปร 3 : 1,000/1,000 Mbps (สัญญา 24 เดือน)</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="planOption" value="option4" class="accent-flowkit-red w-5 h-5">
+                <span class="text-lg">โปร 4 : 2,000/1,000 Mbps (สำหรับลูกค้าใหม่)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id="add_on_group">
+          <div class="group-title flex items-center gap-2">
+            <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+            <div class="group-title-text flex gap-2 items-baseline">
+              <h3 class="gradient-text text-2xl font-bold leading-normal text-center">เลือกบริการเสริม</h3>
+              <span>(ไม่บังคับ)</span>
+            </div>
+          </div>
+          <div class="group-content">
+            <!-- INSERT_YOUR_CODE -->
+              <div class="flex flex-col gap-4 mt-6">
+                <!-- Add-on Checkboxes -->
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" name="addon1" class="accent-flowkit-red w-5 h-5">
+                  <span class="text-lg">เพิ่ม Mesh WiFi</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" name="addon2" class="accent-flowkit-red w-5 h-5">
+                  <span class="text-lg">บริการดูแลอุปกรณ์ตลอด 24 ชั่วโมง</span>
+                </label>
+                <!-- Add-on Radio Group 1: 2 options -->
+                <div class="mt-4">
+                  <span class="block text-base font-medium mb-2">เลือกรูปแบบชำระเงิน</span>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="paymentOption" value="monthly" class="accent-flowkit-red w-5 h-5" checked>
+                    <span class="text-lg">รายเดือน</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="paymentOption" value="yearly" class="accent-flowkit-red w-5 h-5">
+                    <span class="text-lg">รายปี</span>
+                  </label>
+                </div>
+                <!-- Add-on Radio Group 2: 4 options -->
+                <div class="mt-4">
+                  <span class="block text-base font-medium mb-2">เลือกวันติดตั้งที่สะดวก</span>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="installDay" value="weekday" class="accent-flowkit-red w-5 h-5" checked>
+                    <span class="text-lg">วันธรรมดา (จันทร์-ศุกร์)</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="installDay" value="saturday" class="accent-flowkit-red w-5 h-5">
+                    <span class="text-lg">วันเสาร์</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="installDay" value="sunday" class="accent-flowkit-red w-5 h-5">
+                    <span class="text-lg">วันอาทิตย์</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="installDay" value="anyday" class="accent-flowkit-red w-5 h-5">
+                    <span class="text-lg">ได้ทุกวัน</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</body>
+</html>

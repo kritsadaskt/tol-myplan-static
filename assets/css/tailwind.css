@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "./app.css";
+
+@theme {
+  --color-flowkit-red: #FC5555;
+  --color-charcoal-grey: #303C46;
+}
+
+@font-face {
+  font-family: "Better Together";
+  src: url("../fonts/better-together/BetterTogether-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Better Together";
+  
+  src: url("../fonts/better-together/BetterTogether-Medium.woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Better Together";
+  src: url("../fonts/better-together/BetterTogether-Bold.woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    font-family: "Better Together", sans-serif;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto;
+  }
+}
