@@ -4,6 +4,10 @@
 @theme {
   --color-flowkit-red: #FC5555;
   --color-charcoal-grey: #303C46;
+  --color-tol-red: #e00000;
+  --color-true-blue: #0066CC;
+  --color-page-bg: #fafafa;
+  --color-charcoal-grey-disabled: rgba(48, 60, 70, 0.38);
 }
 
 @font-face {

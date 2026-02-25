@@ -1,104 +1,552 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
   <title>TRUE ONLINE - MY PLAN</title>
+  <style>
+    /* Highlight whole contract box when any plan is selected */
+    #contract_period_group:has(input:checked) .contract-box {
+      border: 1px solid var(--tds-sys-light-primary, #E00000);
+      background: var(--tds-ref-primary-primary95, #FFEDEA);
+    }
+  </style>
 </head>
-<body>
-  <section id="heroBanner" class="bg-gray-300 min-h-[630px]"></section>
-  <section id="myplanFormBody" class="py-10">
-    <div class="container">
-      <img src="./assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN" class="w-[360px] h-auto object-cover mx-auto">
-      <h2 class="text-[40px] font-bold text-flowkit-red leading-normal text-center">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
-      <h3 class="text-[32px] font-medium text-charcoal-grey leading-normal text-center">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</h3>
+<body class="bg-[#fafafa]">
 
-      <form action="">
-        <div id="contract_period_group">
-          <div class="group-title flex items-center gap-2">
-            <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold">1</div>
-            <h3 class="gradient-text text-2xl font-bold leading-normal text-center">เลือกความเร็วและระยะสัญญา</h3>
-          </div>
-          <div class="group-content">
-            <div class="flex flex-col gap-4 mt-6">
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="planOption" value="option1" class="accent-flowkit-red w-5 h-5" checked>
-                <span class="text-lg">โปร 1 : 500/500 Mbps (ไม่ติดสัญญา)</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="planOption" value="option2" class="accent-flowkit-red w-5 h-5">
-                <span class="text-lg">โปร 2 : 1,000/500 Mbps (สัญญา 12 เดือน)</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="planOption" value="option3" class="accent-flowkit-red w-5 h-5">
-                <span class="text-lg">โปร 3 : 1,000/1,000 Mbps (สัญญา 24 เดือน)</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="planOption" value="option4" class="accent-flowkit-red w-5 h-5">
-                <span class="text-lg">โปร 4 : 2,000/1,000 Mbps (สำหรับลูกค้าใหม่)</span>
-              </label>
+  <!-- Hero Banner -->
+  <section id="heroBanner" class="bg-gray-300 min-h-[500px] w-full">
+    <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-full object-cover min-h-[500px]">
+  </section>
+
+  <!-- Logo + Tagline -->
+  <div class="bg-[#fafafa]">
+    <div class="max-w-[1128px] mx-auto px-4 pt-10 pb-4 text-center">
+      <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN" class="w-[360px] h-auto object-contain mx-auto mb-4">
+      <h2 class="text-[40px] font-bold text-flowkit-red leading-tight">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
+      <h3 class="text-[32px] font-medium text-charcoal-grey leading-tight">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</h3>
+    </div>
+
+    <!-- Form Body -->
+    <section id="myplanFormBody" class="py-10">
+      <div class="max-w-[1128px] mx-auto px-4">
+        <form action="">
+
+          <!-- Step 1: Plan Selection -->
+          <div id="contract_period_group" class="mb-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">1</div>
+              <h3 class="text-2xl font-bold gradient-text">เลือกความเร็วและระยะสัญญา</h3>
             </div>
-          </div>
-        </div>
-        <div id="add_on_group">
-          <div class="group-title flex items-center gap-2">
-            <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold">2</div>
-            <div class="group-title-text flex gap-2 items-baseline">
-              <h3 class="gradient-text text-2xl font-bold leading-normal text-center">เลือกบริการเสริม</h3>
-              <span>(ไม่บังคับ)</span>
+
+            <div class="contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 border border-transparent">
+
+              <!-- Plan 1: 1000/500 Mbps / 12mo / 699 -->
+              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                  <input type="radio" name="planOption" value="plan_1" class="accent-tol-red w-5 h-5">
+                </div>
+                <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+                  <!-- speed icon placeholder -->
+                   <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[16px] font-bold text-charcoal-grey">1000/500 Mbps</div>
+                  <div class="text-[12px] font-bold text-charcoal-grey">สัญญา 12 เดือน</div>
+                </div>
+                <div class="shrink-0">
+                  <div class="inline-flex items-center gap-2 px-4 py-2">
+                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                      699
+                    </span>
+                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <span>บาท</span>
+                      <span>/เดือน</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Plan 2: 1000/500 Mbps / 24mo / 599 (คุ้มกว่า) -->
+              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                  <input type="radio" name="planOption" value="plan_2" class="accent-tol-red w-5 h-5">
+                </div>
+                <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[16px] font-bold text-charcoal-grey">1000/500 Mbps</span>
+                  <div class="flex items-center gap-1">
+                    <div class="text-[12px] font-bold text-charcoal-grey">สัญญา 24 เดือน</div>
+                    <span class="bg-tol-red text-white text-[10px] font-bold px-2 py-0.5 rounded-full">คุ้มกว่า</span>
+                  </div>
+                </div>
+                <div class="shrink-0">
+                  <div class="inline-flex items-center gap-2 px-4 py-2">
+                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                      599
+                    </span>
+                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <span>บาท</span>
+                      <span>/เดือน</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Plan 3: 500/500 Mbps / 12mo / 599 -->
+              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                  <input type="radio" name="planOption" value="plan_3" class="accent-tol-red w-5 h-5">
+                </div>
+                <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[16px] font-bold text-charcoal-grey">500/500 Mbps</div>
+                  <div class="text-[12px] font-bold text-charcoal-grey">สัญญา 12 เดือน</div>
+                </div>
+                <div class="shrink-0">
+                  <div class="inline-flex items-center gap-2 px-4 py-2">
+                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                      599
+                    </span>
+                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <span>บาท</span>
+                      <span>/เดือน</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Plan 4: 500/500 Mbps / 24mo / 499 (คุ้มกว่า) -->
+              <label class="flex items-center gap-4 py-4 cursor-pointer">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                  <input type="radio" name="planOption" value="plan_3" class="accent-tol-red w-5 h-5">
+                </div>
+                <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[16px] font-bold text-charcoal-grey">500/500 Mbps</div>
+                  <div class="flex items-center gap-1">
+                    <div class="text-[12px] font-bold text-charcoal-grey">สัญญา 24 เดือน</div>
+                    <span class="bg-tol-red text-white text-[10px] font-bold px-2 py-0.5 rounded-full">คุ้มกว่า</span>
+                  </div>
+                </div>
+                <div class="shrink-0">
+                  <div class="inline-flex items-center gap-2 px-4 py-2">
+                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                      499
+                    </span>
+                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <span>บาท</span>
+                      <span>/เดือน</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+
             </div>
+            <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</p>
           </div>
-          <div class="group-content">
-            <!-- INSERT_YOUR_CODE -->
-              <div class="flex flex-col gap-4 mt-6">
-                <!-- Add-on Checkboxes -->
-                <label class="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" name="addon1" class="accent-flowkit-red w-5 h-5">
-                  <span class="text-lg">เพิ่ม Mesh WiFi</span>
+
+          <!-- Step 2: Add-ons -->
+          <div id="add_on_group" class="mb-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">2</div>
+              <div class="flex items-baseline gap-2">
+                <h3 class="text-2xl font-bold gradient-text">เลือกบริการเสริม</h3>
+                <span class="text-[14px] text-[rgba(48,60,70,0.7)]">(ไม่บังคับ)</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+
+              <!-- Sub-section: Mobile SIM (checkbox) -->
+              <div>
+                <p class="text-[14px] font-medium text-charcoal-grey mb-2">
+                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> ซิมเน็ตเต็มสปีด
+                </p>
+                <label class="flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                  <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <input type="checkbox" name="addon_mobile" class="accent-tol-red w-5 h-5">
+                  </div>
+                  <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                  <div class="flex-1">
+                    <span class="text-[16px] font-bold text-charcoal-grey">ซิมเน็ตเต็มสปีด 20GB</span>
+                  </div>
+                  <div class="shrink-0">
+                    <div class="inline-flex items-center gap-2 px-4 py-2">
+                      <span class="text-[24px] font-bold leading-none text-tol-red">
+                        120
+                      </span>
+                      <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                        <span>บาท</span>
+                        <span>/เดือน</span>
+                      </div>
+                    </div>
+                  </div>
                 </label>
-                <label class="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" name="addon2" class="accent-flowkit-red w-5 h-5">
-                  <span class="text-lg">บริการดูแลอุปกรณ์ตลอด 24 ชั่วโมง</span>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 12 หรือ 24 เดือน​</p>
+              </div>
+              
+
+              <!-- Sub-section: Mesh WiFi (checkbox) -->
+              <div>
+                <p class="text-[14px] font-medium text-charcoal-grey mb-2">
+                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> อุปกรณ์กระจายสัญญาณอินเทอร์เน็ต (MESH WiFi) 
+                </p>
+                <label class="flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                  <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <input type="checkbox" name="addon_mesh" class="accent-tol-red w-5 h-5">
+                  </div>
+                  <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                  <div class="flex-1">
+                    <span class="text-[16px] font-bold text-charcoal-grey">MESH WiFi 1 จุด</span>
+                  </div>
+                  <div class="shrink-0">
+                    <div class="inline-flex items-center gap-2 px-4 py-2">
+                      <span class="text-[24px] font-bold leading-none text-tol-red">
+                        100
+                      </span>
+                      <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                        <span>บาท</span>
+                        <span>/เดือน</span>
+                      </div>
+                    </div>
+                  </div>
                 </label>
-                <!-- Add-on Radio Group 1: 2 options -->
-                <div class="mt-4">
-                  <span class="block text-base font-medium mb-2">เลือกรูปแบบชำระเงิน</span>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="paymentOption" value="monthly" class="accent-flowkit-red w-5 h-5" checked>
-                    <span class="text-lg">รายเดือน</span>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 12 หรือ 24 เดือน​</p>
+              </div>
+
+              <!-- Sub-section: CCTV (radio, 2 options) -->
+              <div>
+                <p class="text-[14px] font-medium text-charcoal-grey mb-2">
+                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> กล้องวงจรปิด
+                  พร้อม Cloud ดูย้อนหลัง 7 วัน <span class="text-[rgba(48,60,70,0.6)]">(เลือกได้ อย่างใดอย่างหนึ่ง) </span>
+                </p>
+                <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
+                  <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                      <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5">
+                    </div>
+                    <div class="flex-1 flex flex-col gap-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                        <div>
+                          <p class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</p>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                        <div>
+                          <p class="text-[16px] font-bold text-charcoal-grey">ประกันอัคคีภัย</p>
+                          <p class="text-[12px] text-[rgba(48,60,70,0.7)]">(คุ้มครองสูงสุด 450,000 บ.)</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="shrink-0">
+                      <div class="inline-flex items-center gap-2 px-4 py-2">
+                        <span class="text-[24px] font-bold leading-none text-tol-red">
+                          179
+                        </span>
+                        <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <span>บาท</span>
+                          <span>/เดือน</span>
+                        </div>
+                      </div>
+                    </div>
                   </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="paymentOption" value="yearly" class="accent-flowkit-red w-5 h-5">
-                    <span class="text-lg">รายปี</span>
+                  <label class="flex items-center gap-4 px-4 py-4 cursor-pointer">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                      <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5">
+                    </div>
+                    <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                    <div class="flex-1">
+                      <span class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</span>
+                    </div>
+                    <div class="shrink-0">
+                      <div class="inline-flex items-center gap-2 px-4 py-2">
+                        <span class="text-[24px] font-bold leading-none text-tol-red">
+                          99
+                        </span>
+                        <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <span>บาท</span>
+                          <span>/เดือน</span>
+                        </div>
+                      </div>
+                    </div>
                   </label>
                 </div>
-                <!-- Add-on Radio Group 2: 4 options -->
-                <div class="mt-4">
-                  <span class="block text-base font-medium mb-2">เลือกวันติดตั้งที่สะดวก</span>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="installDay" value="weekday" class="accent-flowkit-red w-5 h-5" checked>
-                    <span class="text-lg">วันธรรมดา (จันทร์-ศุกร์)</span>
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="installDay" value="saturday" class="accent-flowkit-red w-5 h-5">
-                    <span class="text-lg">วันเสาร์</span>
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="installDay" value="sunday" class="accent-flowkit-red w-5 h-5">
-                    <span class="text-lg">วันอาทิตย์</span>
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="installDay" value="anyday" class="accent-flowkit-red w-5 h-5">
-                    <span class="text-lg">ได้ทุกวัน</span>
-                  </label>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 24 เดือน เท่านั้น โดยกล้องตกเป็นกรรมสิทธิ์ของลูกค้าเมื่อใช้งานครบสัญญา หากยกเลิกก่อนสัญญาต้องชำระค่าปรับ 1,290 บาท​</p>
+              </div>
+
+              <!-- Sub-section: TV Pack / รับชมรายการต่างประเทศ (radio, 4 options) -->
+              <div>
+                <p class="text-[14px] font-medium text-charcoal-grey mb-2">
+                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> แพ็กเกจ
+                  ความบันเทิง <br/><span class="text-[rgba(48,60,70,0.6)]">(เลือกได้อย่างใด
+                    อย่างหนึ่ง)</span>
+                </p>
+                
+                <div class="flex flex-col gap-2">
+                  <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
+                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                        <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5">
+                      </div>
+                      <div class="flex-1 flex flex-col gap-3">
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div>
+                            <p class="text-[16px] font-bold text-charcoal-grey">Asian Combo</p>
+                          </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div>
+                            <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="shrink-0">
+                        <div class="inline-flex items-center gap-2 px-4 py-2">
+                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                            200
+                          </span>
+                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                            <span>บาท</span>
+                            <span>/เดือน</span>
+                          </div>
+                        </div>
+                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 259 บาท</p>
+                      </div>
+                    </label>
+                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                        <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5">
+                      </div>
+                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                      <div class="flex-1">
+                        <span class="text-[16px] font-bold text-charcoal-grey">Asian Combo</span>
+                      </div>
+                      <div class="shrink-0">
+                        <div class="inline-flex items-center gap-2 px-4 py-2">
+                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                            139
+                          </span>
+                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                            <span>บาท</span>
+                            <span>/เดือน</span>
+                          </div>
+                        </div>
+                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 159 บาท</p>
+                      </div>
+                    </label>
+                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                        <input type="radio" name="addon_tv" value="now_ent_plus"  class="accent-tol-red w-5 h-5">
+                      </div>
+                      <div class="flex-1 flex flex-col gap-3">
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div>
+                            <p class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</p>
+                          </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <div>
+                            <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="shrink-0">
+                        <div class="inline-flex items-center gap-2 px-4 py-2">
+                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                            180
+                          </span>
+                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                            <span>บาท</span>
+                            <span>/เดือน</span>
+                          </div>
+                        </div>
+                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 199 บาท</p>
+                      </div>
+                    </label>
+                    <label class="flex items-center gap-4 px-4 py-4 cursor-pointer">
+                      <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                        <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5">
+                      </div>
+                      <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                      <div class="flex-1">
+                        <span class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</span>
+                      </div>
+                      <div class="shrink-0">
+                        <div class="inline-flex items-center gap-2 px-4 py-2">
+                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                            99
+                          </span>
+                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                            <span>บาท</span>
+                            <span>/เดือน</span>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข :แพ็กเกจ Asian Combo และ NOW ENT รับชมได้สูงสุด 24 เดือน​</p>
+              </div>
+
+            </div><!-- /flex flex-col gap-6 -->
+          </div><!-- /Step 2 -->
+
+        </form>
+      </div>
+    </section>
+
+    <!-- Promo Banner: NOW ENT -->
+    <section id="promoBanner" class="max-w-[1128px] mx-auto px-4 mb-10">
+      <div class="flex items-center justify-between gap-6">
+        <a href="#">
+          <img src="../assets/images/entertainment-banner.png" alt="NOW ENT" class="w-full h-full object-contain">
+        </a>
+      </a>
+      </div>
+    </section>
+
+    <!-- Recommended Packages -->
+    <section id="recommendedPackages" class="max-w-[1128px] mx-auto px-4 mb-10">
+      <h2 class="text-[24px] font-bold text-charcoal-grey mb-4">แพ็กเกจแนะนำ</h2>
+      <!-- NOTE: Package card images below use placeholder gray. Replace with actual assets. -->
+      <div class="relative pb-6 -mx-4 px-4 overflow-visible">
+        <div class="flex gap-4">
+          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+            <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
+            <div class="absolute bottom-4 left-4">
+              <div class="shrink-0">
+                <div class="inline-flex items-center gap-2 py-4">
+                  <span class="text-[36px] font-bold leading-none text-tol-red">
+                    598
+                  </span>
+                  <div class="flex flex-col leading-tight text-left text-tol-red text-[13px] font-semibold">
+                    <span>บาท</span>
+                    <span>/เดือน</span>
+                  </div>
                 </div>
               </div>
             </div>
+            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+          </div>
+          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+            <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
+            <div class="absolute bottom-4 left-4">
+              <div class="shrink-0">
+                <div class="inline-flex items-center gap-2 py-4">
+                  <span class="text-[36px] font-bold leading-none text-tol-red">
+                    598
+                  </span>
+                  <div class="flex flex-col leading-tight text-left text-tol-red text-[13px] font-semibold">
+                    <span>บาท</span>
+                    <span>/เดือน</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+          </div>
+          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+            <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
+            <div class="absolute bottom-4 left-4">
+              <div class="shrink-0">
+                <div class="inline-flex items-center gap-2 py-4">
+                  <span class="text-[36px] font-bold leading-none text-tol-red">
+                    598
+                  </span>
+                  <div class="flex flex-col leading-tight text-left text-tol-red text-[13px] font-semibold">
+                    <span>บาท</span>
+                    <span>/เดือน</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+          </div>
+          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+            <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
+            <div class="absolute bottom-4 left-4">
+              <div class="shrink-0">
+                <div class="inline-flex items-center gap-2 py-4">
+                  <span class="text-[36px] font-bold leading-none text-tol-red">
+                    598
+                  </span>
+                  <div class="flex flex-col leading-tight text-left text-tol-red text-[13px] font-semibold">
+                    <span>บาท</span>
+                    <span>/เดือน</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+          </div>
+          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+            <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
+            <div class="absolute bottom-4 left-4">
+              <div class="shrink-0">
+                <div class="inline-flex items-center gap-2 py-4">
+                  <span class="text-[36px] font-bold leading-none text-tol-red">
+                    598
+                  </span>
+                  <div class="flex flex-col leading-tight text-left text-tol-red text-[13px] font-semibold">
+                    <span>บาท</span>
+                    <span>/เดือน</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+          </div>
         </div>
-      </form>
 
-    </div>
-  </section>
+        <!-- Pagination bar -->
+        <div class="mt-4 flex items-center justify-center gap-2">
+          <div class="h-1.5 w-20 rounded-full bg-[rgba(48,60,70,0.16)] overflow-hidden">
+            <div class="h-full w-12 bg-tol-red rounded-full"></div>
+          </div>
+          <div class="h-1 w-10 rounded-full bg-[rgba(48,60,70,0.16)]"></div>
+          <div class="h-1 w-10 rounded-full bg-[rgba(48,60,70,0.16)]"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Footer -->
+    <section id="summaryFooter" class="max-w-[1128px] mx-auto px-4 mb-10">
+      <div class="border-t border-[rgba(48,60,70,0.18)] pt-4">
+        <!-- Collapsible header (static — expanded state) -->
+        <div class="flex items-center justify-between cursor-pointer py-2">
+          <span class="text-[16px] font-bold text-charcoal-grey">ยอดรวมและเงื่อนไข</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-charcoal-grey" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <!-- Expanded content -->
+        <div class="py-4 text-[14px] text-[rgba(48,60,70,0.8)] space-y-1">
+          <p>ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</p>
+          <p>ราคานี้เป็นราคารายเดือนสำหรับลูกค้าสมัครใหม่เท่านั้น</p>
+          <p>ราคาดังกล่าวยังไม่รวมภาษีมูลค่าเพิ่ม 7%</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /bg-[#fafafa] -->
+
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(python3:*)",
+      "Bash(cp:*)",
+      "Bash(tail:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
