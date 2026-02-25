@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
   <title>TRUE ONLINE - MY PLAN</title>
   <style>
     /* Highlight whole contract box when any plan is selected */
     #contract_period_group:has(input:checked) .contract-box {
       border: 1px solid var(--tds-sys-light-primary, #E00000);
       background: var(--tds-ref-primary-primary95, #FFEDEA);
+    }
+
+    .summary-accordion-icon svg {
+      transition: transform 0.2s ease;
+      transform-origin: center;
     }
   </style>
 </head>
@@ -174,7 +180,7 @@
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mobile" class="accent-tol-red w-5 h-5">
                   </div>
-                  <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                  <img src="../assets/images/sim-true.png" alt="sim-true" class="w-10 h-10 object-contain">
                   <div class="flex-1">
                     <span class="text-[16px] font-bold text-charcoal-grey">ซิมเน็ตเต็มสปีด 20GB</span>
                   </div>
@@ -203,7 +209,7 @@
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mesh" class="accent-tol-red w-5 h-5">
                   </div>
-                  <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                  <img src="../assets/images/mesh.png" alt="mesh" class="w-10 h-10 object-contain">
                   <div class="flex-1">
                     <span class="text-[16px] font-bold text-charcoal-grey">MESH WiFi 1 จุด</span>
                   </div>
@@ -235,13 +241,13 @@
                     </div>
                     <div class="flex-1 flex flex-col gap-3">
                       <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                        <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
                         <div>
                           <p class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</p>
                         </div>
                       </div>
                       <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                        <img src="../assets/images/insurance.png" alt="insurance" class="w-10 h-10 object-contain">
                         <div>
                           <p class="text-[16px] font-bold text-charcoal-grey">ประกันอัคคีภัย</p>
                           <p class="text-[12px] text-[rgba(48,60,70,0.7)]">(คุ้มครองสูงสุด 450,000 บ.)</p>
@@ -264,7 +270,7 @@
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5">
                     </div>
-                    <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                    <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
                     <div class="flex-1">
                       <span class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</span>
                     </div>
@@ -300,15 +306,15 @@
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
+                          <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
+                          <img src="../assets/images/iqiyi.png" alt="iqiyi" class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">Asian Combo</p>
                           </div>
                         </div>
                         <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <img src="../assets/images/trueid-box.png" alt="trueid-box" class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
                           </div>
@@ -331,9 +337,9 @@
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5">
                       </div>
-                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
-                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
-                      <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                      <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
+                      <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
+                      <img src="../assets/images/iqiyi.png" alt="iqiyi" class="w-10 h-10 object-contain">
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">Asian Combo</span>
                       </div>
@@ -356,13 +362,13 @@
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</p>
                           </div>
                         </div>
                         <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 bg-gray-100 rounded shrink-0"></div>
+                          <img src="../assets/images/trueid-box.png" alt="trueid-box" class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
                           </div>
@@ -385,7 +391,7 @@
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5">
                       </div>
-                      <div class="w-8 h-8 bg-gray-100 rounded shrink-0"></div>
+                      <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</span>
                       </div>
@@ -424,12 +430,13 @@
     </section>
 
     <!-- Recommended Packages -->
-    <section id="recommendedPackages" class="max-w-[1128px] mx-auto px-4 mb-10">
-      <h2 class="text-[24px] font-bold text-charcoal-grey mb-4">แพ็กเกจแนะนำ</h2>
-      <!-- NOTE: Package card images below use placeholder gray. Replace with actual assets. -->
-      <div class="relative pb-6 -mx-4 px-4 overflow-visible">
-        <div class="flex gap-4">
-          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+    <section id="recommendedPackages">
+      <div class="max-w-[1128px] mx-auto px-4">      
+        <h2 class="text-[24px] font-bold text-charcoal-grey mb-4">แพ็กเกจแนะนำ</h2>
+      </div>
+      <div class="recommended-packages-swiper swiper relative pb-6 -mx-4 px-4">
+        <div class="swiper-wrapper pb-6">
+          <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
             <div class="absolute bottom-4 left-4">
               <div class="shrink-0">
@@ -446,7 +453,7 @@
             </div>
             <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
-          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+          <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
             <div class="absolute bottom-4 left-4">
               <div class="shrink-0">
@@ -463,7 +470,7 @@
             </div>
             <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
-          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+          <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
             <div class="absolute bottom-4 left-4">
               <div class="shrink-0">
@@ -480,7 +487,7 @@
             </div>
             <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
-          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+          <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
             <div class="absolute bottom-4 left-4">
               <div class="shrink-0">
@@ -497,7 +504,7 @@
             </div>
             <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
-          <div class="w-[300px] h-[400px] relative shrink-0 overflow-hidden">
+          <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
             <div class="absolute bottom-4 left-4">
               <div class="shrink-0">
@@ -515,38 +522,91 @@
             <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
         </div>
-
-        <!-- Pagination bar -->
-        <div class="mt-4 flex items-center justify-center gap-2">
-          <div class="h-1.5 w-20 rounded-full bg-[rgba(48,60,70,0.16)] overflow-hidden">
-            <div class="h-full w-12 bg-tol-red rounded-full"></div>
-          </div>
-          <div class="h-1 w-10 rounded-full bg-[rgba(48,60,70,0.16)]"></div>
-          <div class="h-1 w-10 rounded-full bg-[rgba(48,60,70,0.16)]"></div>
-        </div>
+        <div class="recommended-packages-pagination swiper-pagination mt-4 flex items-center justify-center bottom-2"></div>
       </div>
     </section>
 
     <!-- Summary Footer -->
-    <section id="summaryFooter" class="max-w-[1128px] mx-auto px-4 mb-10">
-      <div class="border-t border-[rgba(48,60,70,0.18)] pt-4">
-        <!-- Collapsible header (static — expanded state) -->
-        <div class="flex items-center justify-between cursor-pointer py-2">
-          <span class="text-[16px] font-bold text-charcoal-grey">ยอดรวมและเงื่อนไข</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-charcoal-grey" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <!-- Expanded content -->
-        <div class="py-4 text-[14px] text-[rgba(48,60,70,0.8)] space-y-1">
-          <p>ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</p>
-          <p>ราคานี้เป็นราคารายเดือนสำหรับลูกค้าสมัครใหม่เท่านั้น</p>
-          <p>ราคาดังกล่าวยังไม่รวมภาษีมูลค่าเพิ่ม 7%</p>
+    <section id="summaryFooter" class="max-w-[1128px] mx-auto px-4 my-10">
+      <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
+        <div class="summary-accordion">
+
+          <!-- Accordion item 1: Main plan details -->
+          <div class="summary-accordion-item">
+            <button
+              type="button"
+              class="summary-accordion-trigger w-full flex items-center justify-between py-3 text-left"
+              aria-expanded="false"
+            >
+              <div class="flex items-center gap-2">
+                <span class="text-[16px] font-semibold text-charcoal-grey">รวมคำถามและข้อสงสัย</span>
+              </div>
+              <span class="summary-accordion-icon text-[18px] text-charcoal-grey">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12.3755 16.6722C11.991 16.6722 11.64 16.5135 11.3226 16.1962L4.87732 9.60437C4.75525 9.4762 4.66064 9.33887 4.59351 9.19238C4.53247 9.03979 4.50195 8.87805 4.50195 8.70715C4.50195 8.46301 4.55994 8.24329 4.6759 8.04797C4.79187 7.84656 4.94751 7.68787 5.14282 7.5719C5.33813 7.45593 5.55786 7.39795 5.802 7.39795C6.15601 7.39795 6.47034 7.53528 6.745 7.80994L12.76 13.9897H12.0184L18.006 7.80994C18.2806 7.53528 18.598 7.39795 18.9581 7.39795C19.1962 7.39795 19.4128 7.45593 19.6082 7.5719C19.8035 7.68787 19.9591 7.84656 20.0751 8.04797C20.191 8.24329 20.249 8.46301 20.249 8.70715C20.249 9.05505 20.127 9.35413 19.8828 9.60437L13.4283 16.1962C13.2697 16.361 13.1049 16.483 12.934 16.5624C12.7631 16.6356 12.5769 16.6722 12.3755 16.6722Z" fill="#E00000"/>
+                </svg>
+              </span>
+            </button>
+            <div class="summary-accordion-panel pb-3 pl-7 text-[12px] text-[rgba(48,60,70,0.85)] hidden">
+              <ul class="list-disc pl-4 space-y-1">
+                <li>ความเร็วอินเทอร์เน็ตตามแพ็กเกจที่เลือก (เช่น 1000/500 Mbps)</li>
+                <li>ระยะสัญญา 12 หรือ 24 เดือน ตามที่เลือก</li>
+                <li>ค่าแรกเข้า 890 บาท (ชำระครั้งเดียว)</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
   </div><!-- /bg-[#fafafa] -->
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <script src="../assets/js/recommended-packages-swiper.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var items = document.querySelectorAll('.summary-accordion-item');
+
+      if (!items.length) return;
+
+      items.forEach(function (item) {
+        var trigger = item.querySelector('.summary-accordion-trigger');
+        var panel = item.querySelector('.summary-accordion-panel');
+        var iconWrapper = item.querySelector('.summary-accordion-icon');
+        var iconSvg = iconWrapper ? iconWrapper.querySelector('svg') : null;
+
+        if (!trigger || !panel) return;
+
+        trigger.addEventListener('click', function () {
+          var isOpen = !panel.classList.contains('hidden');
+
+          // Close all panels
+          items.forEach(function (otherItem) {
+            var otherPanel = otherItem.querySelector('.summary-accordion-panel');
+            var otherTrigger = otherItem.querySelector('.summary-accordion-trigger');
+            var otherIconWrapper = otherItem.querySelector('.summary-accordion-icon');
+            var otherIconSvg = otherIconWrapper ? otherIconWrapper.querySelector('svg') : null;
+
+            if (!otherPanel || !otherTrigger) return;
+
+            otherPanel.classList.add('hidden');
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            if (otherIconSvg) {
+              otherIconSvg.style.transform = 'rotate(0deg)';
+            }
+          });
+
+          // Toggle current panel
+          if (!isOpen) {
+            panel.classList.remove('hidden');
+            trigger.setAttribute('aria-expanded', 'true');
+            if (iconSvg) {
+              iconSvg.style.transform = 'rotate(180deg)';
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
