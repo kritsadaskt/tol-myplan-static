@@ -108,6 +108,9 @@ Alpine.data('summary')          → summary bar in index.html
   .open                         → boolean (collapsible detail panel)
 ```
 
+## Testing URL
+Use `http://localhost:5500` to test the website.
+
 ## TODO (pending)
 - [ ] Replace placeholder `API_ENDPOINT` with real backend URL
 - [ ] Download and host Figma image assets locally in `assets/images/`

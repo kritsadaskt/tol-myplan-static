@@ -166,7 +166,7 @@
 .summary-input {
   width: 100%;
   height: 56px;
-  padding: 20px 16px 8px;
+  padding: 16px;
   border: 1px solid #C0C0C0;
   border-radius: 16px;
   font-size: 16px;
@@ -182,21 +182,25 @@
 
 .summary-input-label {
   position: absolute;
-  left: 16px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
-  color: rgba(48, 60, 70, 0.5);
+  color: #303C46;
   pointer-events: none;
+  padding: 0 4px;
+  background: transparent;
   transition: all 0.2s ease;
 }
 
-/* Float label when focused or has value */
+/* Float label onto the border when focused or has value */
 .summary-input:focus+.summary-input-label,
 .summary-input:not(:placeholder-shown)+.summary-input-label {
-  top: 14px;
+  top: 0;
+  transform: translateY(-50%);
   font-size: 12px;
-  transform: translateY(0);
+  background: white;
+  letter-spacing: 0.048px;
 }
 
 /* Error state */
