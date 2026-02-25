@@ -4,34 +4,42 @@ document.addEventListener("DOMContentLoaded", function () {
   var sliderEl = document.querySelector(".recommended-packages-swiper");
   if (!sliderEl) return;
 
-  // Recommended Packages slider
-  new Swiper(sliderEl, {
+  // Calculate left offset so first card aligns with the container's left edge
+  function getContainerOffset() {
+    var heading = document.querySelector("#recommendedPackages .max-w-\\[1128px\\]");
+    if (!heading) return 16;
+    var rect = heading.getBoundingClientRect();
+    return Math.max(rect.left, 16);
+  }
+
+  var swiper = new Swiper(sliderEl, {
     speed: 550,
-    spaceBetween: 16,
-    slidesPerView: 1.15,
+    spaceBetween: 14,
+    slidesPerView: "auto",
     grabCursor: true,
+    centeredSlides: false,
+    slidesOffsetBefore: getContainerOffset(),
+    slidesOffsetAfter: 0,
     pagination: {
       el: ".recommended-packages-pagination",
       clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + ' rec-pkg-dot"></span>';
+      },
     },
     keyboard: {
       enabled: true,
       onlyInViewport: true,
     },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 16,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-      1280: {
-        slidesPerView: 4,
-        spaceBetween: 24,
-      },
-    },
+  });
+
+  // Update offset on resize to stay aligned with container
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      swiper.params.slidesOffsetBefore = getContainerOffset();
+      swiper.update();
+    }, 100);
   });
 });
-

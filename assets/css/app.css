@@ -4,6 +4,82 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .bg-gradient-ci {
   background: linear-gradient(135deg, #0090D8 0%, #FF008F 71.69%, #FF000B 100%);
+}
+
+/* ── Recommended Packages Slider ── */
+#recommendedPackages {
+  overflow: visible;
+}
+
+.recommended-packages-swiper {
+  overflow: visible;
+}
+
+.recommended-packages-swiper .swiper-slide {
+  width: 260px;
+}
+
+@media (min-width: 640px) {
+  .recommended-packages-swiper .swiper-slide {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .recommended-packages-swiper .swiper-slide {
+    /* Fit exactly 4 cards: available = (viewport + 1128) / 2 - 16px padding - 3 gaps × 14px */
+    width: calc((100vw + 1012px) / 8);
+  }
+}
+
+.rec-pkg-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.rec-pkg-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Right fade overlay */
+.recommended-packages-swiper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: calc(100% - 48px);
+  /* exclude pagination area */
+  background: linear-gradient(to right, transparent, #fafafa);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dot pagination */
+.recommended-packages-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d5db;
+  opacity: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.recommended-packages-pagination .swiper-pagination-bullet-active {
+  background: #e00000;
+  transform: scale(1.15);
+}
+
+/* Hide native scrollbar on swiper */
+.recommended-packages-swiper .swiper-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.recommended-packages-swiper .swiper-wrapper::-webkit-scrollbar {
+  display: none;
 }
