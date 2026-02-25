@@ -683,7 +683,7 @@
           </div>
           <p class="text-[10px] text-[rgba(48,60,70,0.8)]">(ไม่รวมภาษีมูลค่าเพิ่ม)</p>
         </div>
-        <a href="../myplan-summary/"
+        <a href="../myplan-summary/" @click="$store.plan.persistToSession()"
           class="bg-tol-red text-white text-[14px] font-medium tracking-[0.014px] px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">
           ถัดไป
         </a>

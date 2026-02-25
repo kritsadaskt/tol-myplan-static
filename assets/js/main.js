@@ -80,5 +80,32 @@ document.addEventListener('alpine:init', () => {
         toggleDetail() {
             this.detailOpen = !this.detailOpen;
         },
+
+        /** Serialize current selection → sessionStorage (called before navigating to summary) */
+        persistToSession() {
+            const snapshot = {
+                selectedPlanId: this.selectedPlanId,
+                addOns: JSON.parse(JSON.stringify(this.addOns)),
+                plan: this.selectedPlan,
+                activeAddons: this.activeAddons,
+                addonTotal: this.addonTotal,
+                total: this.total,
+            };
+            sessionStorage.setItem('myplan_selection', JSON.stringify(snapshot));
+        },
     });
 });
+
+/**
+ * Load persisted plan selection from sessionStorage.
+ * Used by the summary page (no Alpine store needed there).
+ * @returns {object|null}
+ */
+function loadFromSession() {
+    try {
+        const raw = sessionStorage.getItem('myplan_selection');
+        return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+        return null;
+    }
+}

@@ -1,12 +1,248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <title>TRUE ONLINE - MY PLAN SUMMARY</title>
+  <link rel="stylesheet" href="../assets/css/app.css">
+  <script src="../assets/js/main.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <title>TRUE ONLINE - MY PLAN สรุปรายการ</title>
 </head>
-<body>
-  <div class="container"></div>
+
+<body class="bg-page-bg min-h-screen" x-data="leadForm()" x-cloak>
+
+  <!-- Top bar: back link -->
+  <nav class="max-w-[600px] mx-auto px-4 pt-6 pb-2">
+    <a href="../myplan/"
+      class="inline-flex items-center gap-2 text-charcoal-grey font-bold text-[20px] hover:opacity-80 transition-opacity">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#303C46" />
+      </svg>
+      กลับ
+    </a>
+  </nav>
+
+  <!-- Main content card -->
+  <main class="max-w-[600px] mx-auto px-4 pb-10">
+
+    <!-- Hero / Logo -->
+    <div class="text-center pt-4 pb-6">
+      <img src="../assets/images/myplan-logo.png" alt="MY Plan" class="w-[200px] h-auto mx-auto mb-2">
+    </div>
+
+    <!-- Summary Card -->
+    <div class="summary-card bg-white rounded-[16px] shadow-[0px_6px_32px_4px_rgba(0,0,0,0.08)] overflow-hidden">
+
+      <!-- Gradient Header -->
+      <div class="px-6 pt-6 pb-4">
+        <h2 class="text-[20px] font-bold gradient-text">รายละเอียดแพ็กเกจที่คุณเลือก</h2>
+      </div>
+
+      <!-- Line Items -->
+      <div class="px-6 pb-4">
+
+        <!-- Plan row -->
+        <template x-if="plan">
+          <div class="flex justify-between items-start py-3 border-b border-[rgba(48,60,70,0.12)]">
+            <div>
+              <p class="text-[16px] font-bold text-charcoal-grey" x-text="'ความเร็ว ' + plan.speed"></p>
+              <p class="text-[14px] text-[rgba(48,60,70,0.7)]" x-text="'สัญญา ' + plan.contract + ' เดือน'"></p>
+            </div>
+            <div class="text-right shrink-0 pl-4">
+              <span class="text-[18px] font-bold text-tol-red" x-text="plan.price"></span>
+              <span class="text-[12px] text-[rgba(48,60,70,0.7)]"> บาท/เดือน</span>
+            </div>
+          </div>
+        </template>
+
+        <!-- Add-on rows -->
+        <template x-for="addon in activeAddons" :key="addon.label">
+          <div class="flex justify-between items-center py-3 border-b border-[rgba(48,60,70,0.12)]">
+            <p class="text-[14px] font-medium text-charcoal-grey" x-text="addon.label"></p>
+            <div class="text-right shrink-0 pl-4">
+              <span class="text-[16px] font-bold text-tol-red" x-text="addon.price"></span>
+              <span class="text-[12px] text-[rgba(48,60,70,0.7)]"> บาท/เดือน</span>
+            </div>
+          </div>
+        </template>
+
+        <!-- No selection fallback -->
+        <template x-if="!plan">
+          <div class="py-6 text-center">
+            <p class="text-[14px] text-[rgba(48,60,70,0.5)]">ยังไม่ได้เลือกแพ็กเกจ</p>
+            <a href="../myplan/" class="text-true-blue text-[14px] font-medium mt-2 inline-block">←
+              กลับไปเลือกแพ็กเกจ</a>
+          </div>
+        </template>
+      </div>
+
+      <!-- Total Row -->
+      <template x-if="plan">
+        <div class="px-6 py-4 bg-[#fafafa]">
+          <div class="flex justify-between items-center">
+            <span class="text-[16px] font-medium text-charcoal-grey">สรุปค่าบริการรายเดือน</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[24px] font-bold text-tol-red" x-text="total"></span>
+              <div class="flex flex-col leading-tight text-tol-red text-[10px] font-medium">
+                <span>บาท</span>
+                <span>/เดือน</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-[10px] text-[rgba(48,60,70,0.6)] text-right mt-1">(ไม่รวมภาษีมูลค่าเพิ่ม)</p>
+        </div>
+      </template>
+
+      <!-- Divider -->
+      <div class="border-t border-[rgba(48,60,70,0.12)]"></div>
+
+      <!-- Lead Form -->
+      <div class="px-6 pt-6 pb-8">
+        <p class="text-[16px] font-bold text-charcoal-grey mb-1">กรุณากรอกชื่อและเบอร์โทร</p>
+        <p class="text-[14px] text-[rgba(48,60,70,0.7)] mb-6">เพื่อให้เจ้าหน้าที่ติดต่อกลับ</p>
+
+        <form @submit.prevent="submit()" novalidate>
+
+          <!-- ชื่อ -->
+          <div class="summary-input-group mb-4">
+            <div class="summary-input-wrapper" :class="errors.name ? 'is-error' : ''">
+              <input type="text" id="field_name" x-model="fields.name" placeholder=" " class="summary-input" required>
+              <label for="field_name" class="summary-input-label">ชื่อ <span class="text-tol-red">*</span></label>
+            </div>
+            <p class="text-[12px] text-tol-red mt-1" x-show="errors.name" x-text="errors.name"></p>
+          </div>
+
+          <!-- นามสกุล -->
+          <div class="summary-input-group mb-4">
+            <div class="summary-input-wrapper" :class="errors.surname ? 'is-error' : ''">
+              <input type="text" id="field_surname" x-model="fields.surname" placeholder=" " class="summary-input"
+                required>
+              <label for="field_surname" class="summary-input-label">นามสกุล <span class="text-tol-red">*</span></label>
+            </div>
+            <p class="text-[12px] text-tol-red mt-1" x-show="errors.surname" x-text="errors.surname"></p>
+          </div>
+
+          <!-- เบอร์โทรศัพท์ -->
+          <div class="summary-input-group mb-4">
+            <div class="summary-input-wrapper" :class="errors.phone ? 'is-error' : ''">
+              <input type="tel" id="field_phone" x-model="fields.phone" placeholder=" " class="summary-input" required
+                inputmode="tel" maxlength="10">
+              <label for="field_phone" class="summary-input-label">เบอร์โทรศัพท์ <span
+                  class="text-tol-red">*</span></label>
+            </div>
+            <p class="text-[12px] text-tol-red mt-1" x-show="errors.phone" x-text="errors.phone"></p>
+          </div>
+
+          <!-- Disclaimer -->
+          <p class="text-[12px] text-[rgba(48,60,70,0.6)] mb-2">
+            เจ้าหน้าที่จะติดต่อกลับภายใน 1 วันทำการ
+          </p>
+          <a href="#" class="text-[12px] text-true-blue font-medium hover:underline">
+            ข้อกำหนดและเงื่อนไข
+          </a>
+
+          <!-- API Error -->
+          <template x-if="apiError">
+            <div class="mt-4 p-3 bg-[#FFF0F0] border border-tol-red rounded-[8px]">
+              <p class="text-[13px] text-tol-red" x-text="apiError"></p>
+            </div>
+          </template>
+
+          <!-- Submit Button -->
+          <button type="submit"
+            class="w-full mt-6 bg-tol-red text-white text-[16px] font-bold py-3 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50"
+            :disabled="loading">
+            <span x-show="!loading">สมัครบริการ</span>
+            <span x-show="loading" class="inline-flex items-center gap-2">
+              <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+              </svg>
+              กำลังส่ง...
+            </span>
+          </button>
+
+        </form>
+      </div>
+
+    </div><!-- /summary-card -->
+  </main>
+
+  <script>
+    /**
+     * Alpine.data — leadForm
+     * Hydrates plan selection from sessionStorage and handles lead form submission.
+     */
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('leadForm', () => {
+        const data = loadFromSession();
+        return {
+          /* Plan data from sessionStorage */
+          plan: data ? data.plan : null,
+          activeAddons: data ? (data.activeAddons || []) : [],
+          total: data ? (data.total || 0) : 0,
+
+          /* Form fields */
+          fields: { name: '', surname: '', phone: '' },
+          errors: {},
+          loading: false,
+          apiError: null,
+
+          validate() {
+            this.errors = {};
+            if (!this.fields.name.trim()) {
+              this.errors.name = 'กรุณากรอกชื่อ';
+            }
+            if (!this.fields.surname.trim()) {
+              this.errors.surname = 'กรุณากรอกนามสกุล';
+            }
+            const phone = this.fields.phone.trim();
+            if (!phone) {
+              this.errors.phone = 'กรุณากรอกเบอร์โทรศัพท์';
+            } else if (!/^0\d{8,9}$/.test(phone)) {
+              this.errors.phone = 'เบอร์โทรศัพท์ไม่ถูกต้อง (เช่น 0812345678)';
+            }
+            return Object.keys(this.errors).length === 0;
+          },
+
+          async submit() {
+            if (!this.validate()) return;
+            this.loading = true;
+            this.apiError = null;
+
+            const payload = {
+              plan: this.plan,
+              addOns: data ? data.addOns : {},
+              total: this.total,
+              customer: {
+                name: (this.fields.name.trim() + ' ' + this.fields.surname.trim()).trim(),
+                phone: this.fields.phone.trim(),
+              },
+            };
+
+            try {
+              const res = await fetch(API_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              if (!res.ok) throw new Error('Server error: ' + res.status);
+              window.location.href = '../myplan-thank-you/';
+            } catch (err) {
+              this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
+              console.error('Lead submit error:', err);
+            } finally {
+              this.loading = false;
+            }
+          },
+        };
+      });
+    });
+  </script>
+
 </body>
+
 </html>
