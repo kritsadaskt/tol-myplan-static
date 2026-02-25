@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
   <title>TRUE ONLINE - MY PLAN</title>
   <style>
-    /* Highlight whole contract box when any plan is selected */
-    #contract_period_group:has(input:checked) .contract-box {
-      border: 1px solid var(--tds-sys-light-primary, #E00000);
-      background: var(--tds-ref-primary-primary95, #FFEDEA);
+    /* Highlight add-on boxes when checked/selected */
+    .addon-box {
+      border: 1px solid transparent;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .addon-box:has(input:checked) {
+      border: 1px solid var(--tds-sys-light-primary, #E00000) !important;
+      background: var(--tds-ref-primary-primary95, #FFEDEA) !important;
     }
 
     .summary-accordion-icon svg {
@@ -19,17 +25,19 @@
     }
   </style>
 </head>
+
 <body class="bg-[#fafafa]">
 
   <!-- Hero Banner -->
-  <section id="heroBanner" class="bg-gray-300 min-h-[500px] w-full">
-    <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-full object-cover min-h-[500px]">
+  <section id="heroBanner" class="bg-gray-300 min-h-auto w-full">
+    <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-full object-cover">
   </section>
 
   <!-- Logo + Tagline -->
   <div class="bg-[#fafafa]">
     <div class="max-w-[1128px] mx-auto px-4 pt-10 pb-4 text-center">
-      <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN" class="w-[360px] h-auto object-contain mx-auto mb-4">
+      <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN"
+        class="w-[360px] h-auto object-contain mx-auto mb-4">
       <h2 class="text-[40px] font-bold text-flowkit-red leading-tight">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
       <h3 class="text-[32px] font-medium text-charcoal-grey leading-tight">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</h3>
     </div>
@@ -42,11 +50,14 @@
           <!-- Step 1: Plan Selection -->
           <div id="contract_period_group" class="mb-10">
             <div class="flex items-center gap-3 mb-6">
-              <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">1</div>
+              <div
+                class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
+                1</div>
               <h3 class="text-2xl font-bold gradient-text">เลือกความเร็วและระยะสัญญา</h3>
             </div>
 
-            <div class="contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 border border-transparent">
+            <div
+              class="addon-box contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
 
               <!-- Plan 1: 1000/500 Mbps / 12mo / 699 -->
               <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
@@ -55,7 +66,8 @@
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
                   <!-- speed icon placeholder -->
-                   <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                    class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="text-[16px] font-bold text-charcoal-grey">1000/500 Mbps</div>
@@ -80,7 +92,8 @@
                   <input type="radio" name="planOption" value="plan_2" class="accent-tol-red w-5 h-5">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                    class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
                   <span class="text-[16px] font-bold text-charcoal-grey">1000/500 Mbps</span>
@@ -108,7 +121,8 @@
                   <input type="radio" name="planOption" value="plan_3" class="accent-tol-red w-5 h-5">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                    class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="text-[16px] font-bold text-charcoal-grey">500/500 Mbps</div>
@@ -133,7 +147,8 @@
                   <input type="radio" name="planOption" value="plan_3" class="accent-tol-red w-5 h-5">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps" class="w-10 h-10 object-contain">
+                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                    class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="text-[16px] font-bold text-charcoal-grey">500/500 Mbps</div>
@@ -156,13 +171,16 @@
               </label>
 
             </div>
-            <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</p>
+            <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)
+            </p>
           </div>
 
           <!-- Step 2: Add-ons -->
           <div id="add_on_group" class="mb-10">
             <div class="flex items-center gap-3 mb-6">
-              <div class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">2</div>
+              <div
+                class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
+                2</div>
               <div class="flex items-baseline gap-2">
                 <h3 class="text-2xl font-bold gradient-text">เลือกบริการเสริม</h3>
                 <span class="text-[14px] text-[rgba(48,60,70,0.7)]">(ไม่บังคับ)</span>
@@ -176,7 +194,8 @@
                 <p class="text-[14px] font-medium text-charcoal-grey mb-2">
                   <span class="text-tol-red font-bold">สมัครเพิ่ม</span> ซิมเน็ตเต็มสปีด
                 </p>
-                <label class="flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                <label
+                  class="addon-box flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mobile" class="accent-tol-red w-5 h-5">
                   </div>
@@ -198,14 +217,15 @@
                 </label>
                 <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 12 หรือ 24 เดือน​</p>
               </div>
-              
+
 
               <!-- Sub-section: Mesh WiFi (checkbox) -->
               <div>
                 <p class="text-[14px] font-medium text-charcoal-grey mb-2">
-                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> อุปกรณ์กระจายสัญญาณอินเทอร์เน็ต (MESH WiFi) 
+                  <span class="text-tol-red font-bold">สมัครเพิ่ม</span> อุปกรณ์กระจายสัญญาณอินเทอร์เน็ต (MESH WiFi)
                 </p>
-                <label class="flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                <label
+                  class="addon-box flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mesh" class="accent-tol-red w-5 h-5">
                   </div>
@@ -232,9 +252,10 @@
               <div>
                 <p class="text-[14px] font-medium text-charcoal-grey mb-2">
                   <span class="text-tol-red font-bold">สมัครเพิ่ม</span> กล้องวงจรปิด
-                  พร้อม Cloud ดูย้อนหลัง 7 วัน <span class="text-[rgba(48,60,70,0.6)]">(เลือกได้ อย่างใดอย่างหนึ่ง) </span>
+                  พร้อม Cloud ดูย้อนหลัง 7 วัน <span class="text-[rgba(48,60,70,0.6)]">(เลือกได้ อย่างใดอย่างหนึ่ง)
+                  </span>
                 </p>
-                <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
+                <div class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
                   <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5">
@@ -287,20 +308,22 @@
                     </div>
                   </label>
                 </div>
-                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 24 เดือน เท่านั้น โดยกล้องตกเป็นกรรมสิทธิ์ของลูกค้าเมื่อใช้งานครบสัญญา หากยกเลิกก่อนสัญญาต้องชำระค่าปรับ 1,290 บาท​</p>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : สัญญา 24 เดือน เท่านั้น
+                  โดยกล้องตกเป็นกรรมสิทธิ์ของลูกค้าเมื่อใช้งานครบสัญญา หากยกเลิกก่อนสัญญาต้องชำระค่าปรับ 1,290 บาท​</p>
               </div>
 
               <!-- Sub-section: TV Pack / รับชมรายการต่างประเทศ (radio, 4 options) -->
               <div>
                 <p class="text-[14px] font-medium text-charcoal-grey mb-2">
                   <span class="text-tol-red font-bold">สมัครเพิ่ม</span> แพ็กเกจ
-                  ความบันเทิง <br/><span class="text-[rgba(48,60,70,0.6)]">(เลือกได้อย่างใด
+                  ความบันเทิง <br /><span class="text-[rgba(48,60,70,0.6)]">(เลือกได้อย่างใด
                     อย่างหนึ่ง)</span>
                 </p>
-                
+
                 <div class="flex flex-col gap-2">
-                  <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
-                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                  <div class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
+                    <label
+                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5">
                       </div>
@@ -333,7 +356,8 @@
                         <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 259 บาท</p>
                       </div>
                     </label>
-                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                    <label
+                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5">
                       </div>
@@ -356,13 +380,15 @@
                         <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 159 บาท</p>
                       </div>
                     </label>
-                    <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                    <label
+                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                        <input type="radio" name="addon_tv" value="now_ent_plus"  class="accent-tol-red w-5 h-5">
+                        <input type="radio" name="addon_tv" value="now_ent_plus" class="accent-tol-red w-5 h-5">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
-                          <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
+                          <img src="../assets/images/true-now-ent.png" alt="true-now-ent"
+                            class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</p>
                           </div>
@@ -409,7 +435,8 @@
                     </label>
                   </div>
                 </div>
-                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข :แพ็กเกจ Asian Combo และ NOW ENT รับชมได้สูงสุด 24 เดือน​</p>
+                <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข :แพ็กเกจ Asian Combo และ NOW ENT
+                  รับชมได้สูงสุด 24 เดือน​</p>
               </div>
 
             </div><!-- /flex flex-col gap-6 -->
@@ -425,13 +452,13 @@
         <a href="#">
           <img src="../assets/images/entertainment-banner.png" alt="NOW ENT" class="w-full h-full object-contain">
         </a>
-      </a>
+        </a>
       </div>
     </section>
 
     <!-- Recommended Packages -->
     <section id="recommendedPackages">
-      <div class="max-w-[1128px] mx-auto px-4">      
+      <div class="max-w-[1128px] mx-auto px-4">
         <h2 class="text-[24px] font-bold text-charcoal-grey mb-4">แพ็กเกจแนะนำ</h2>
       </div>
       <div class="recommended-packages-swiper swiper relative pb-6 -mx-4 px-4">
@@ -451,7 +478,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+            <a href="#"
+              class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
           <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
@@ -468,7 +496,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+            <a href="#"
+              class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
           <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
@@ -485,7 +514,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+            <a href="#"
+              class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
           <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
@@ -502,7 +532,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+            <a href="#"
+              class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
           <div class="swiper-slide w-[300px] h-[400px] relative shrink-0 overflow-hidden">
             <img src="../assets/images/recommended-package-1.png" alt="Package 1" class="w-full h-full object-contain">
@@ -519,10 +550,12 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
+            <a href="#"
+              class="absolute bottom-4 right-4 bg-tol-red text-white font-bold text-[13px] px-5 py-2 mb-4 rounded-full hover:opacity-90 transition-opacity">ซื้อเลย</a>
           </div>
         </div>
-        <div class="recommended-packages-pagination swiper-pagination mt-4 flex items-center justify-center bottom-2"></div>
+        <div class="recommended-packages-pagination swiper-pagination mt-4 flex items-center justify-center bottom-2">
+        </div>
       </div>
     </section>
 
@@ -533,17 +566,17 @@
 
           <!-- Accordion item 1: Main plan details -->
           <div class="summary-accordion-item">
-            <button
-              type="button"
+            <button type="button"
               class="summary-accordion-trigger w-full flex items-center justify-between py-3 text-left"
-              aria-expanded="false"
-            >
+              aria-expanded="false">
               <div class="flex items-center gap-2">
                 <span class="text-[16px] font-semibold text-charcoal-grey">รวมคำถามและข้อสงสัย</span>
               </div>
               <span class="summary-accordion-icon text-[18px] text-charcoal-grey">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M12.3755 16.6722C11.991 16.6722 11.64 16.5135 11.3226 16.1962L4.87732 9.60437C4.75525 9.4762 4.66064 9.33887 4.59351 9.19238C4.53247 9.03979 4.50195 8.87805 4.50195 8.70715C4.50195 8.46301 4.55994 8.24329 4.6759 8.04797C4.79187 7.84656 4.94751 7.68787 5.14282 7.5719C5.33813 7.45593 5.55786 7.39795 5.802 7.39795C6.15601 7.39795 6.47034 7.53528 6.745 7.80994L12.76 13.9897H12.0184L18.006 7.80994C18.2806 7.53528 18.598 7.39795 18.9581 7.39795C19.1962 7.39795 19.4128 7.45593 19.6082 7.5719C19.8035 7.68787 19.9591 7.84656 20.0751 8.04797C20.191 8.24329 20.249 8.46301 20.249 8.70715C20.249 9.05505 20.127 9.35413 19.8828 9.60437L13.4283 16.1962C13.2697 16.361 13.1049 16.483 12.934 16.5624C12.7631 16.6356 12.5769 16.6722 12.3755 16.6722Z" fill="#E00000"/>
+                  <path
+                    d="M12.3755 16.6722C11.991 16.6722 11.64 16.5135 11.3226 16.1962L4.87732 9.60437C4.75525 9.4762 4.66064 9.33887 4.59351 9.19238C4.53247 9.03979 4.50195 8.87805 4.50195 8.70715C4.50195 8.46301 4.55994 8.24329 4.6759 8.04797C4.79187 7.84656 4.94751 7.68787 5.14282 7.5719C5.33813 7.45593 5.55786 7.39795 5.802 7.39795C6.15601 7.39795 6.47034 7.53528 6.745 7.80994L12.76 13.9897H12.0184L18.006 7.80994C18.2806 7.53528 18.598 7.39795 18.9581 7.39795C19.1962 7.39795 19.4128 7.45593 19.6082 7.5719C19.8035 7.68787 19.9591 7.84656 20.0751 8.04797C20.191 8.24329 20.249 8.46301 20.249 8.70715C20.249 9.05505 20.127 9.35413 19.8828 9.60437L13.4283 16.1962C13.2697 16.361 13.1049 16.483 12.934 16.5624C12.7631 16.6356 12.5769 16.6722 12.3755 16.6722Z"
+                    fill="#E00000" />
                 </svg>
               </span>
             </button>
@@ -609,4 +642,5 @@
     });
   </script>
 </body>
+
 </html>
