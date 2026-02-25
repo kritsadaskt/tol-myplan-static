@@ -1,3 +1,8 @@
+/* Alpine x-cloak: hide until Alpine initializes */
+[x-cloak] {
+  display: none !important;
+}
+
 .gradient-text {
   background: linear-gradient(90deg, #0090D8 0%, #FF008F 71.69%, #FF000B 100%);
   -webkit-background-clip: text;
@@ -82,4 +87,69 @@
 
 .recommended-packages-swiper .swiper-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Sticky Summary Bar ── */
+.sticky-summary {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.sticky-summary-card {
+  position: relative;
+  pointer-events: auto;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.08);
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 24px 60px 0;
+}
+
+/* Chevron toggle button */
+.sticky-summary-toggle {
+  position: absolute;
+  top: -24px;
+  right: 60px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9fc;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+/* Smooth accordion */
+.sticky-summary-details {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.sticky-summary-details.is-open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* ── Mobile: full-width, tighter padding ── */
+@media (max-width: 1023px) {
+  .sticky-summary-card {
+    max-width: 100%;
+    padding: 24px 16px 0;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sticky-summary-toggle {
+    right: 16px;
+  }
 }

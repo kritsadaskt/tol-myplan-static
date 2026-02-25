@@ -1,0 +1,84 @@
+/* ──────────────────────────────────────────── *
+ *  TRUE ONLINE — MY Plan  ·  Alpine.js Store  *
+ * ──────────────────────────────────────────── */
+
+const API_ENDPOINT = 'https://api.example.com/leads';
+
+/* ── Plans ── */
+const PLANS = [
+    { id: 'plan_1', speed: '1000/500 Mbps', contract: 12, price: 699 },
+    { id: 'plan_2', speed: '1000/500 Mbps', contract: 24, price: 599 },
+    { id: 'plan_3', speed: '500/500 Mbps', contract: 12, price: 599 },
+    { id: 'plan_4', speed: '500/500 Mbps', contract: 24, price: 499 },
+];
+
+/* ── Add-on prices ── */
+const ADDON_PRICES = {
+    mobilePack: { label: 'ซิมเน็ตเต็มสปีด 20GB', price: 120 },
+    meshWifi: { label: 'MESH WiFi 1 จุด', price: 100 },
+    cctv_premium: { label: 'CCTV 1 ตัว + ประกันอัคคีภัย', price: 179 },
+    cctv_basic: { label: 'CCTV 1 ตัว', price: 99 },
+    asian_combo_plus: { label: 'Asian Combo + กล่อง TrueID TV', price: 240 },
+    asian_combo: { label: 'Asian Combo', price: 139 },
+    now_ent_plus: { label: 'TrueVisions NOW ENT + กล่อง TrueID TV', price: 180 },
+    now_ent: { label: 'TrueVisions NOW ENT', price: 99 },
+};
+
+/* ── Image assets (Figma-exported, replace with local paths for prod) ── */
+const ASSETS = {};
+
+/* ── Alpine Store: plan ── */
+document.addEventListener('alpine:init', () => {
+
+    Alpine.store('plan', {
+        /* ── State ── */
+        selectedPlanId: null,
+        addOns: {
+            mobilePack: false,
+            meshWifi: false,
+            cctv: null,
+            tvPack: null,
+        },
+        detailOpen: false,
+
+        /* ── Getters ── */
+        get selectedPlan() {
+            return PLANS.find(p => p.id === this.selectedPlanId) || null;
+        },
+
+        get activeAddons() {
+            const list = [];
+            if (this.addOns.mobilePack) {
+                list.push(ADDON_PRICES.mobilePack);
+            }
+            if (this.addOns.meshWifi) {
+                list.push(ADDON_PRICES.meshWifi);
+            }
+            if (this.addOns.cctv && ADDON_PRICES[this.addOns.cctv]) {
+                list.push(ADDON_PRICES[this.addOns.cctv]);
+            }
+            if (this.addOns.tvPack && ADDON_PRICES[this.addOns.tvPack]) {
+                list.push(ADDON_PRICES[this.addOns.tvPack]);
+            }
+            return list;
+        },
+
+        get addonTotal() {
+            return this.activeAddons.reduce((sum, a) => sum + a.price, 0);
+        },
+
+        get total() {
+            const plan = this.selectedPlan;
+            return plan ? plan.price + this.addonTotal : 0;
+        },
+
+        get hasSelection() {
+            return this.selectedPlanId !== null;
+        },
+
+        /* ── Actions ── */
+        toggleDetail() {
+            this.detailOpen = !this.detailOpen;
+        },
+    });
+});
