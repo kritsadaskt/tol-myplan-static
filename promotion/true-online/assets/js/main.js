@@ -2,7 +2,7 @@
  *  TRUE ONLINE — MY Plan  ·  Alpine.js Store  *
  * ──────────────────────────────────────────── */
 
-const API_ENDPOINT = 'https://api.example.com/leads';
+const API_ENDPOINT = '../api.php';
 
 /* ── Plans ── */
 const PLANS = [
@@ -23,6 +23,29 @@ const ADDON_PRICES = {
     now_ent_plus: { label: 'TrueVisions NOW ENT + กล่อง TrueID TV', price: 180 },
     now_ent: { label: 'TrueVisions NOW ENT', price: 99 },
 };
+
+/* ── CRM: Package codes (plan_id → PDS Package field) ── */
+const PACKAGE_CODES = {
+    plan_1: '1000/500_12M_699',
+    plan_2: '1000/500_24M_599',
+    plan_3: '500/500_12M_599',
+    plan_4: '500/500_24M_499',
+};
+
+/* ── CRM: Add-on → CRM field codes ── */
+const ADDON_CRM_CODES = {
+    mobilePack: { field: 'OfferSGM', code: 'SIM20GB_120' },
+    meshWifi: { field: 'TelcoOffer', code: 'Mesh_100' },
+    cctv_premium: { field: 'TelcoOffer', code: 'CCTV_INS_179' },
+    cctv_basic: { field: 'TelcoOffer', code: 'CCTV_99' },
+    asian_combo_plus: { field: 'NonTelcoOffer', code: 'Asian Combo_OTT_200' },
+    asian_combo: { field: 'NonTelcoOffer', code: 'Aisan Combo_139' },
+    now_ent_plus: { field: 'NonTelcoOffer', code: 'NOWENT_OTT_180' },
+    now_ent: { field: 'NonTelcoOffer', code: 'NOWENT_99' },
+};
+
+/* ── CRM: Default BU code for self-custom plans ── */
+const BU_CODE_SELF_CUSTOM = 'BU-18269';
 
 /* ── Image assets (Figma-exported, replace with local paths for prod) ── */
 const ASSETS = {};
@@ -99,6 +122,24 @@ document.addEventListener('alpine:init', () => {
             return false;
         },
 
+        /** Build CRM add-on codes from current selection */
+        buildCrmAddons() {
+            const result = { OfferSGM: '', TelcoOffer: '', NonTelcoOffer: '' };
+            if (this.addOns.mobilePack) {
+                result.OfferSGM = ADDON_CRM_CODES.mobilePack.code;
+            }
+            if (this.addOns.meshWifi) {
+                result.TelcoOffer = ADDON_CRM_CODES.meshWifi.code;
+            }
+            if (this.addOns.cctv && ADDON_CRM_CODES[this.addOns.cctv]) {
+                result.TelcoOffer = ADDON_CRM_CODES[this.addOns.cctv].code;
+            }
+            if (this.addOns.tvPack && ADDON_CRM_CODES[this.addOns.tvPack]) {
+                result.NonTelcoOffer = ADDON_CRM_CODES[this.addOns.tvPack].code;
+            }
+            return result;
+        },
+
         /** Serialize current selection → sessionStorage (called before navigating to summary) */
         persistToSession() {
             const snapshot = {
@@ -108,6 +149,10 @@ document.addEventListener('alpine:init', () => {
                 activeAddons: this.activeAddons,
                 addonTotal: this.addonTotal,
                 total: this.total,
+                /* CRM fields */
+                packageCode: PACKAGE_CODES[this.selectedPlanId] || '',
+                buCode: BU_CODE_SELF_CUSTOM,
+                crmAddons: this.buildCrmAddons(),
             };
             sessionStorage.setItem('myplan_selection', JSON.stringify(snapshot));
         },
@@ -133,4 +178,22 @@ function loadFromSession() {
     } catch (e) {
         return null;
     }
+}
+
+/**
+ * Capture UTM parameters from the landing URL and persist to sessionStorage.
+ * Called once on the configurator page load.
+ */
+function captureUTM() {
+    const params = new URLSearchParams(window.location.search);
+    const utm = {
+        campaign: params.get('utm_campaign') || '',
+        source: params.get('utm_source') || '',
+        medium: params.get('utm_medium') || '',
+    };
+    // Only overwrite if this is a fresh landing (has at least one UTM param)
+    if (utm.campaign || utm.source || utm.medium) {
+        sessionStorage.setItem('myplan_utm', JSON.stringify(utm));
+    }
+    return utm;
 }

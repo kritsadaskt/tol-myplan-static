@@ -34,7 +34,8 @@
     </div>
     <div class="px-4">
       <p class="text-[24px] md:text-[40px] font-bold text-flowkit-red leading-[1.4]">เลือกที่ใช่ จัดได้ตามใจคุณ</p>
-      <p class="text-[16px] md:text-[32px] font-medium text-charcoal-grey leading-[1.4]">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</p>
+      <p class="text-[16px] md:text-[32px] font-medium text-charcoal-grey leading-[1.4]">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด
+      </p>
     </div>
   </div>
 
@@ -249,14 +250,29 @@
             this.loading = true;
             this.apiError = null;
 
+            // Read UTM from sessionStorage
+            let utm = { campaign: '', source: '', medium: '' };
+            try { utm = JSON.parse(sessionStorage.getItem('myplan_utm')) || utm; } catch (e) { /* ignore */ }
+
+            // Check for preset package (from recommended/special cards)
+            const presetParams = new URLSearchParams(window.location.search);
+            const presetBuCode = presetParams.get('preset') || '';
+
             const payload = {
-              plan: this.plan,
-              addOns: data ? data.addOns : {},
+              // CRM fields
+              campaignCode: presetBuCode || (data && data.buCode) || 'BU-18269',
+              packageCode: (data && data.packageCode) || presetParams.get('pkg') || '',
+              firstName: this.fields.name.trim(),
+              lastName: this.fields.surname.trim(),
+              phone: this.fields.phone.trim(),
+              dataSource: [utm.campaign, utm.source, utm.medium].filter(Boolean).join('|'),
+              // Add-on CRM codes
+              offerSGM: (data && data.crmAddons && data.crmAddons.OfferSGM) || '',
+              telcoOffer: (data && data.crmAddons && data.crmAddons.TelcoOffer) || '',
+              nonTelcoOffer: (data && data.crmAddons && data.crmAddons.NonTelcoOffer) || '',
+              // LeadSGM Version A
+              leadSGM: 'TOL_MY_PLAN : Price : ' + this.total,
               total: this.total,
-              customer: {
-                name: (this.fields.name.trim() + ' ' + this.fields.surname.trim()).trim(),
-                phone: this.fields.phone.trim(),
-              },
             };
 
             try {
@@ -268,10 +284,8 @@
               if (!res.ok) throw new Error('Server error: ' + res.status);
               window.location.href = '../myplan-thank-you/';
             } catch (err) {
-              window.location.href = '../myplan-thank-you/';
-              // Don't forget to remove this after testing
-              // this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
-              // console.error('Lead submit error:', err);
+              this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
+              console.error('Lead submit error:', err);
             } finally {
               this.loading = false;
             }
