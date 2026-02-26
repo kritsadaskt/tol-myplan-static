@@ -16,31 +16,30 @@
 
   <!-- Top app bar -->
   <div class="max-w-[1128px] mx-auto px-1">
-    <div class="flex items-center gap-1 h-16 py-2">
-      <a href="../myplan/"
-        class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-[rgba(48,60,70,0.08)] transition-colors shrink-0">
+    <a href="../myplan/" title="" class="inline-block items-center">
+      <div class="back-btn-inner flex items-center gap-1 h-16 py-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#303C46" />
         </svg>
-      </a>
-      <span class="text-[20px] font-bold text-charcoal-grey leading-8">กลับ</span>
-    </div>
+        <span class="text-[20px] font-bold text-charcoal-grey leading-8">กลับ</span>
+      </div>
+    </a>
   </div>
 
   <!-- Hero: Logo + Tagline -->
-  <div class="max-w-[1128px] mx-auto text-center pb-10">
+  <div class="max-w-[1128px] mx-auto text-center pb-4 md:pb-10">
     <div class="w-full">
       <img src="../assets/images/myplan-logo.png" alt="MY Plan"
         class="w-[210px] max-w-[1128px] h-auto object-contain mx-auto">
     </div>
     <div class="px-4">
-      <p class="text-[40px] font-bold text-flowkit-red leading-[1.4]">เลือกที่ใช่ จัดได้ตามใจคุณ</p>
-      <p class="text-[32px] font-medium text-charcoal-grey leading-[1.4]">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</p>
+      <p class="text-[24px] md:text-[40px] font-bold text-flowkit-red leading-[1.4]">เลือกที่ใช่ จัดได้ตามใจคุณ</p>
+      <p class="text-[16px] md:text-[32px] font-medium text-charcoal-grey leading-[1.4]">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</p>
     </div>
   </div>
 
   <!-- Main Container Card -->
-  <main class="max-w-[1128px] mx-auto pb-10">
+  <main class="max-w-[1128px] mx-auto px-4 pb-10">
     <div
       class="bg-white rounded-[16px] shadow-[0px_6px_32px_0px_rgba(0,0,0,0.08)] px-4 pt-4 pb-10 flex flex-col items-center">
 
@@ -52,7 +51,7 @@
           <!-- Gradient Header + Line items -->
           <div class="w-full border-b border-[rgba(48,60,70,0.38)] flex flex-col items-start">
             <!-- Title -->
-            <p class="gradient-text text-[32px] font-medium leading-[1.4] text-center w-full">
+            <p class="gradient-text text-[16px] md:text-[32px] font-medium leading-[1.4] text-center w-full">
               รายละเอียดแพ็กเกจที่คุณเลือก
             </p>
 
@@ -121,8 +120,8 @@
           <div class="w-full flex flex-col gap-6 items-center">
 
             <!-- Title -->
-            <p class="text-[24px] font-medium text-charcoal-grey leading-[1.4] text-center">
-              กรุณากรอกชื่อและเบอร์โทร เพื่อให้เจ้าหน้าที่ติดต่อกลับ
+            <p class="text-[16px] md:text-[24px] font-medium text-charcoal-grey leading-[1.4] text-center">
+              กรุณากรอกชื่อและเบอร์โทร <br class="block md:hidden">เพื่อให้เจ้าหน้าที่ติดต่อกลับ
             </p>
 
             <!-- Form fields -->
@@ -130,9 +129,9 @@
               <form @submit.prevent="submit()" novalidate class="w-full max-w-[727px] flex flex-col gap-4 items-start">
 
                 <!-- Name + Surname (side by side) -->
-                <div class="flex gap-[11px] items-start w-full">
+                <div class="flex flex-col md:flex-row gap-[11px] items-start w-full">
                   <!-- ชื่อ -->
-                  <div class="w-[358px] min-h-[72px]">
+                  <div class="w-full md:w-[358px] min-h-[72px]">
                     <div class="summary-input-wrapper" :class="errors.name ? 'is-error' : ''">
                       <input type="text" id="field_name" x-model="fields.name" placeholder=" " class="summary-input"
                         required>
@@ -143,7 +142,7 @@
                   </div>
 
                   <!-- นามสกุล -->
-                  <div class="w-[358px] min-h-[72px]">
+                  <div class="w-full md:w-[358px] min-h-[72px]">
                     <div class="summary-input-wrapper" :class="errors.surname ? 'is-error' : ''">
                       <input type="text" id="field_surname" x-model="fields.surname" placeholder=" "
                         class="summary-input" required>
@@ -155,7 +154,7 @@
                 </div>
 
                 <!-- เบอร์โทรศัพท์ -->
-                <div class="w-[358px] min-h-[72px]">
+                <div class="w-full md:w-[358px] min-h-[72px]">
                   <div class="summary-input-wrapper" :class="errors.phone ? 'is-error' : ''">
                     <input type="tel" id="field_phone" x-model="fields.phone" placeholder=" " class="summary-input"
                       required inputmode="tel" maxlength="10">
@@ -192,7 +191,7 @@
 
         <!-- Submit Button -->
         <button type="button" @click="submit()"
-          class="bg-tol-red w-[358px] h-10 flex items-center justify-center rounded-full text-[14px] font-medium text-white tracking-[0.014px] hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50"
+          class="bg-tol-red w-full md:w-[358px] h-10 flex items-center justify-center rounded-full text-[14px] font-medium text-white tracking-[0.014px] hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50"
           :disabled="loading">
           <span x-show="!loading">สมัครบริการ</span>
           <span x-show="loading" class="inline-flex items-center gap-2">
