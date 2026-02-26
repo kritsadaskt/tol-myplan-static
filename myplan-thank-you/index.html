@@ -1,12 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <title>TRUE ONLINE - MY PLAN THANK YOU</title>
+  <link rel="stylesheet" href="../assets/css/app.css">
+  <title>TRUE ONLINE - MY PLAN ขอบคุณ</title>
 </head>
-<body>
-  <div class="container"></div>
+
+<body class="bg-page-bg min-h-screen">
+
+  <!-- Top app bar -->
+  <div class="max-w-[1128px] mx-auto px-1">
+    <div class="flex items-center gap-1 h-16 py-2">
+      <a href="../myplan/"
+        class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-[rgba(48,60,70,0.08)] transition-colors shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#303C46" />
+        </svg>
+      </a>
+      <span class="text-[20px] font-bold text-charcoal-grey leading-8">กลับ</span>
+    </div>
+  </div>
+
+  <!-- Hero: Logo + Tagline -->
+  <div class="max-w-[1128px] mx-auto text-center pb-10">
+    <div class="w-full">
+      <img src="../assets/images/myplan-logo.png" alt="MY Plan"
+        class="w-full max-w-[1128px] h-[158px] object-contain mx-auto">
+    </div>
+    <div class="px-4">
+      <p class="text-[40px] font-bold text-flowkit-red leading-[1.4]">เลือกที่ใช่ จัดได้ตามใจคุณ</p>
+      <p class="text-[32px] font-medium text-charcoal-grey leading-[1.4]">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</p>
+    </div>
+  </div>
+
+  <!-- Main Container Card -->
+  <main class="max-w-[1128px] mx-auto pb-10">
+    <div
+      class="bg-white rounded-[16px] shadow-[0px_6px_32px_0px_rgba(0,0,0,0.08)] px-4 py-10 flex flex-col items-center">
+
+      <div class="flex flex-col gap-6 items-center">
+
+        <!-- Confirmation Message -->
+        <div class="text-[32px] font-medium text-charcoal-grey leading-[1.4] text-center">
+          <p>เราได้รับข้อมูลของคุณเรียบร้อยแล้ว​</p>
+          <p>คุณจะได้รับการติดต่อกลับภายใน 30 นาที​</p>
+        </div>
+
+        <!-- Close / ปิด Button (Outlined) -->
+        <a href="https://www.true.th/promotion/true-online"
+          class="w-[150px] h-10 flex items-center justify-center rounded-full border border-tol-red text-[14px] font-medium text-tol-red tracking-[0.014px] hover:bg-[rgba(224,0,0,0.06)] transition-colors cursor-pointer">
+          ปิด
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Clear sessionStorage to prevent re-submission -->
+  <script>
+    sessionStorage.removeItem('myplan_selection');
+  </script>
+
 </body>
+
 </html>
