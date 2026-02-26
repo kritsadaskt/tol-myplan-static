@@ -10,8 +10,8 @@
     "url": "https://github.com/trueonline/trueonline.git"
   },
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./assets/css/tailwind.css -o ./assets/css/styles.css --watch",
-    "build": "npx @tailwindcss/cli -i ./assets/css/tailwind.css -o ./assets/css/styles.css --minify"
+    "dev": "npx @tailwindcss/cli -i ./promotion/true-online/assets/css/tailwind.css -o ./promotion/true-online/assets/css/styles.css --watch",
+    "build": "npx @tailwindcss/cli -i ./promotion/true-online/assets/css/tailwind.css -o ./promotion/true-online/assets/css/styles.css --minify"
   },
   "dependencies": {
     "tailwindcss": "^4.2.1"

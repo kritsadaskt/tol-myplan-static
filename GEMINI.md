@@ -5,12 +5,13 @@ Static sale/landing page for TRUE ONLINE fiber internet packages (MY Plan). Cust
 
 ## Page Flow
 ```
-myplan/index.html  ──(ถัดไป button)──▶  myplan-summary/index.html  ──(Submit)──▶  myplan-thank-you/index.html
- configurator                         lead form                                  confirmation
-      │                                   │
- $store.plan state               leadForm Alpine.data
- in sessionStorage               reads $store.plan for summary
+promotion/true-online/myplan/index.html  ──(ถัดไป)──▶  …/myplan-summary/index.html  ──(Submit)──▶  …/myplan-thank-you/index.html
+ configurator                                          lead form                                    confirmation
+      │                                                     │
+ $store.plan state                                 leadForm Alpine.data
+ in sessionStorage                                 reads $store.plan for summary
 ```
+Production URL: `https://true.th/promotion/true-online/myplan`
 
 ## Stack
 | Tool | Version | How |
@@ -25,11 +26,11 @@ myplan/index.html  ──(ถัดไป button)──▶  myplan-summary/index
 npm run dev    # watch mode — auto-recompiles tailwind.css → styles.css
 npm run build  # minified production build
 ```
-Input:  `assets/css/tailwind.css`
-Output: `assets/css/styles.css`
+Input:  `promotion/true-online/assets/css/tailwind.css`
+Output: `promotion/true-online/assets/css/styles.css`
 
 ## API Endpoint
-Defined at the **top of `assets/js/main.js`** (line 3):
+Defined at the **top of `promotion/true-online/assets/js/main.js`** (line 3):
 ```js
 const API_ENDPOINT = 'https://api.example.com/leads';
 ```
@@ -76,13 +77,13 @@ Replace this constant when the backend is ready.
 
 ## Fonts
 `Better Together` WOFF2 files copied from the existing `true-online` project:
-- `assets/fonts/better-together/BetterTogether-Regular.woff2`
-- `assets/fonts/better-together/BetterTogether-Medium.woff2`
-- `assets/fonts/better-together/BetterTogether-Bold.woff2`
+- `promotion/true-online/assets/fonts/better-together/BetterTogether-Regular.woff2`
+- `promotion/true-online/assets/fonts/better-together/BetterTogether-Medium.woff2`
+- `promotion/true-online/assets/fonts/better-together/BetterTogether-Bold.woff2`
 
 ## Image Assets
 Figma-exported asset URLs are embedded directly in the HTML and main.js (`ASSETS` object).
-For production, download and host these under `assets/images/`.
+For production, download and host these under `promotion/true-online/assets/images/`.
 
 Figma source: `https://www.figma.com/design/GJBgsrvl6LiMF9ysW2wH5h/Website-Design-2026---Dev?node-id=1210-28536`
 
@@ -109,10 +110,11 @@ Alpine.data('summary')          → summary bar in index.html
 ```
 
 ## Testing URL
-Use `http://localhost:5500` to test the website.
+Serve from project root: `npx serve .` → `http://localhost:3000/promotion/true-online/myplan/`
+Or use Live Server with mount: `http://localhost:5500/promotion/true-online/myplan/`
 
 ## TODO (pending)
 - [ ] Replace placeholder `API_ENDPOINT` with real backend URL
-- [ ] Download and host Figma image assets locally in `assets/images/`
+- [ ] Download and host Figma image assets locally in `promotion/true-online/assets/images/`
 - [ ] Add mobile Figma node URL for responsive CSS pass
 - [ ] Add `<head>` meta tags: OG, canonical, favicon
