@@ -26,23 +26,117 @@
       transition: transform 0.2s ease;
       transform-origin: center;
     }
+
+    /* ── Compact mode for very narrow phones (<445px) ── */
+    @media (max-width: 444px) {
+
+      /* Shrink radio-button containers */
+      #contract_period_group label>div.w-12 {
+        width: 28px;
+        height: 28px;
+      }
+
+      #add_on_group label>div.w-12 {
+        width: 28px;
+        height: 28px;
+      }
+
+      /* Shrink speed / add-on icons */
+      #contract_period_group label>div.w-10,
+      #contract_period_group label img.w-10,
+      #add_on_group label img.w-10 {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* Tighten row vertical padding */
+      #contract_period_group label {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      #add_on_group label {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      /* Reduce card horizontal padding */
+      .contract-box {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      /* Match Plan Selection compact style on CCTV + TV Pack cards */
+      #add_on_group .addon-box {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      /* Tighten stacked icon rows (flex-col gap-3 → 4px) */
+      #add_on_group .flex-col.gap-3 {
+        gap: 4px;
+      }
+
+      /* Tighten icon-row horizontal gaps (gap-3 → 6px) */
+      /* #add_on_group .flex.items-center.gap-3 {
+        gap: 6px;
+      } */
+
+      /* Smaller addon icons in CCTV / TV Pack stacked rows */
+      #add_on_group .flex-col.gap-3 img.w-10 {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* Reduce font size in CCTV/TV multi-line labels */
+      /* #add_on_group .flex-col.gap-3 p.text-\[16px\] {
+        font-size: 14px;
+      } */
+
+      /* Compact price display */
+      .plan-price-value {
+        font-size: 20px;
+      }
+
+      .plan-price-unit {
+        font-size: 9px;
+      }
+
+      /* Tighten price block inner padding */
+      .plan-price-value+.plan-price-unit,
+      .plan-price-value {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      #contract_period_group .inline-flex,
+      #add_on_group .inline-flex {
+        padding-left: 4px;
+        padding-right: 4px;
+        gap: 4px;
+      }
+    }
   </style>
 </head>
 
 <body class="bg-[#fafafa]" x-data>
 
   <!-- Hero Banner -->
-  <section id="heroBanner" class="bg-gray-300 min-h-auto w-full">
-    <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-full object-cover">
+  <section id="heroBanner" class="bg-gray-300 w-full">
+    <picture>
+      <source media="(max-width: 702px)" srcset="../assets/images/myplan-hero-banner-mobile.png">
+      <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-auto object-cover">
+    </picture>
   </section>
 
   <!-- Logo + Tagline -->
   <div class="bg-[#fafafa]">
     <div class="max-w-[1128px] mx-auto px-4 pt-10 pb-4 text-center">
       <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN"
-        class="w-[360px] h-auto object-contain mx-auto mb-4">
-      <h2 class="text-[40px] font-bold text-flowkit-red leading-tight">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
-      <h3 class="text-[32px] font-medium text-charcoal-grey leading-tight">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด</h3>
+        class="w-[210px] sm:w-[360px] h-auto object-contain mx-auto mb-4">
+      <h2 class="text-[24px] sm:text-[40px] font-bold text-flowkit-red leading-tight">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
+      <h3 class="text-[16px] sm:text-[32px] font-medium text-charcoal-grey leading-tight">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด
+      </h3>
     </div>
 
     <!-- Form Body -->
@@ -52,18 +146,22 @@
 
           <!-- Step 1: Plan Selection -->
           <div id="contract_period_group" class="mb-10">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 sm:gap-3 mb-6">
+              <!-- Desktop: numbered circle -->
               <div
-                class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
+                class="step-header-circle bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
                 1</div>
-              <h3 class="text-2xl font-bold gradient-text">เลือกความเร็วและระยะสัญญา</h3>
+              <!-- Mobile: icon -->
+              <img src="../assets/images/ic-phone-step1.png" alt=""
+                class="step-header-icon hidden w-8 h-8 shrink-0 object-contain">
+              <h3 class="text-[20px] sm:text-2xl font-bold gradient-text">เลือกความเร็ว และระยะสัญญา</h3>
             </div>
 
             <div
               class="addon-box contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
 
               <!-- Plan 1: 1000/500 Mbps / 12mo / 699 -->
-              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+              <label class="flex items-center gap-2 sm:gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                 <div class="w-12 h-12 flex items-center justify-center shrink-0">
                   <input type="radio" name="planOption" value="plan_1" class="accent-tol-red w-5 h-5"
                     x-model="$store.plan.selectedPlanId">
@@ -79,10 +177,11 @@
                 </div>
                 <div class="shrink-0">
                   <div class="inline-flex items-center gap-2 px-4 py-2">
-                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                    <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                       699
                     </span>
-                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                    <div
+                      class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                       <span>บาท</span>
                       <span>/เดือน</span>
                     </div>
@@ -91,7 +190,7 @@
               </label>
 
               <!-- Plan 2: 1000/500 Mbps / 24mo / 599 (คุ้มกว่า) -->
-              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+              <label class="flex items-center gap-2 sm:gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                 <div class="w-12 h-12 flex items-center justify-center shrink-0">
                   <input type="radio" name="planOption" value="plan_2" class="accent-tol-red w-5 h-5"
                     x-model="$store.plan.selectedPlanId">
@@ -109,10 +208,11 @@
                 </div>
                 <div class="shrink-0">
                   <div class="inline-flex items-center gap-2 px-4 py-2">
-                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                    <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                       599
                     </span>
-                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                    <div
+                      class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                       <span>บาท</span>
                       <span>/เดือน</span>
                     </div>
@@ -121,7 +221,7 @@
               </label>
 
               <!-- Plan 3: 500/500 Mbps / 12mo / 599 -->
-              <label class="flex items-center gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+              <label class="flex items-center gap-2 sm:gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
                 <div class="w-12 h-12 flex items-center justify-center shrink-0">
                   <input type="radio" name="planOption" value="plan_3" class="accent-tol-red w-5 h-5"
                     x-model="$store.plan.selectedPlanId">
@@ -136,10 +236,11 @@
                 </div>
                 <div class="shrink-0">
                   <div class="inline-flex items-center gap-2 px-4 py-2">
-                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                    <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                       599
                     </span>
-                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                    <div
+                      class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                       <span>บาท</span>
                       <span>/เดือน</span>
                     </div>
@@ -148,7 +249,7 @@
               </label>
 
               <!-- Plan 4: 500/500 Mbps / 24mo / 499 (คุ้มกว่า) -->
-              <label class="flex items-center gap-4 py-4 cursor-pointer">
+              <label class="flex items-center gap-2 sm:gap-4 py-4 cursor-pointer">
                 <div class="w-12 h-12 flex items-center justify-center shrink-0">
                   <input type="radio" name="planOption" value="plan_4" class="accent-tol-red w-5 h-5"
                     x-model="$store.plan.selectedPlanId">
@@ -166,10 +267,11 @@
                 </div>
                 <div class="shrink-0">
                   <div class="inline-flex items-center gap-2 px-4 py-2">
-                    <span class="text-[24px] font-bold leading-none text-tol-red">
+                    <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                       499
                     </span>
-                    <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                    <div
+                      class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                       <span>บาท</span>
                       <span>/เดือน</span>
                     </div>
@@ -178,19 +280,25 @@
               </label>
 
             </div>
-            <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1">เงื่อนไข : ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)
+            <p class="text-[12px] text-[rgba(48,60,70,0.8)] mt-3 px-1"><span class="hidden sm:inline">เงื่อนไข :
+                ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</span><span class="sm:hidden">เงื่อนไข : สัญญา 12 หรือ 24 เดือน |
+                ค่าแรกเข้า 890 บาท (ปกติ 2,000 บาท)</span>
             </p>
           </div>
 
           <!-- Step 2: Add-ons -->
           <div id="add_on_group" class="mb-10">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 sm:gap-3 mb-6">
+              <!-- Desktop: numbered circle -->
               <div
-                class="bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
+                class="step-header-circle bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
                 2</div>
+              <!-- Mobile: icon -->
+              <img src="../assets/images/ic-phone-step2.png" alt=""
+                class="step-header-icon hidden w-8 h-8 shrink-0 object-contain">
               <div class="flex items-baseline gap-2">
-                <h3 class="text-2xl font-bold gradient-text">เลือกบริการเสริม</h3>
-                <span class="text-[14px] text-[rgba(48,60,70,0.7)]">(ไม่บังคับ)</span>
+                <h3 class="text-[20px] sm:text-2xl font-bold gradient-text">เลือกบริการเสริม</h3>
+                <span class="text-[14px] sm:text-[14px] text-[rgba(48,60,70,0.7)]">(ไม่บังคับ)</span>
               </div>
             </div>
 
@@ -202,7 +310,7 @@
                   <span class="text-tol-red font-bold">สมัครเพิ่ม</span> ซิมเน็ตเต็มสปีด
                 </p>
                 <label
-                  class="addon-box flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                  class="addon-box flex items-center gap-2 sm:gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mobile" class="accent-tol-red w-5 h-5"
                       x-model="$store.plan.addOns.mobilePack">
@@ -213,10 +321,11 @@
                   </div>
                   <div class="shrink-0">
                     <div class="inline-flex items-center gap-2 px-4 py-2">
-                      <span class="text-[24px] font-bold leading-none text-tol-red">
+                      <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                         120
                       </span>
-                      <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <div
+                        class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                         <span>บาท</span>
                         <span>/เดือน</span>
                       </div>
@@ -233,7 +342,7 @@
                   <span class="text-tol-red font-bold">สมัครเพิ่ม</span> อุปกรณ์กระจายสัญญาณอินเทอร์เน็ต (MESH WiFi)
                 </p>
                 <label
-                  class="addon-box flex items-center gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] px-4 cursor-pointer">
+                  class="addon-box flex items-center gap-2 sm:gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mesh" class="accent-tol-red w-5 h-5"
                       x-model="$store.plan.addOns.meshWifi">
@@ -244,10 +353,11 @@
                   </div>
                   <div class="shrink-0">
                     <div class="inline-flex items-center gap-2 px-4 py-2">
-                      <span class="text-[24px] font-bold leading-none text-tol-red">
+                      <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                         100
                       </span>
-                      <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                      <div
+                        class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                         <span>บาท</span>
                         <span>/เดือน</span>
                       </div>
@@ -264,8 +374,10 @@
                   พร้อม Cloud ดูย้อนหลัง 7 วัน <span class="text-[rgba(48,60,70,0.6)]">(เลือกได้ อย่างใดอย่างหนึ่ง)
                   </span>
                 </p>
-                <div class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
-                  <label class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                <div
+                  class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
+                  <label
+                    class="flex items-center gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5"
                         x-model="$store.plan.addOns.cctv">
@@ -287,17 +399,18 @@
                     </div>
                     <div class="shrink-0">
                       <div class="inline-flex items-center gap-2 px-4 py-2">
-                        <span class="text-[24px] font-bold leading-none text-tol-red">
+                        <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                           179
                         </span>
-                        <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                        <div
+                          class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                           <span>บาท</span>
                           <span>/เดือน</span>
                         </div>
                       </div>
                     </div>
                   </label>
-                  <label class="flex items-center gap-4 px-4 py-4 cursor-pointer">
+                  <label class="flex items-center gap-2 sm:gap-4 py-4 cursor-pointer">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5"
                         x-model="$store.plan.addOns.cctv">
@@ -308,10 +421,11 @@
                     </div>
                     <div class="shrink-0">
                       <div class="inline-flex items-center gap-2 px-4 py-2">
-                        <span class="text-[24px] font-bold leading-none text-tol-red">
+                        <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                           99
                         </span>
-                        <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                        <div
+                          class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                           <span>บาท</span>
                           <span>/เดือน</span>
                         </div>
@@ -332,15 +446,16 @@
                 </p>
 
                 <div class="flex flex-col gap-2">
-                  <div class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full">
+                  <div
+                    class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
                     <label
-                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5"
                           x-model="$store.plan.addOns.tvPack">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-2 sm:gap-4">
                           <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
                           <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
                           <img src="../assets/images/iqiyi.png" alt="iqiyi" class="w-10 h-10 object-contain">
@@ -355,21 +470,24 @@
                           </div>
                         </div>
                       </div>
-                      <div class="shrink-0">
+                      <div class="shrink-0 text-right">
                         <div class="inline-flex items-center gap-2 px-4 py-2">
-                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                          <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                             200
                           </span>
-                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <div
+                            class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                             <span>บาท</span>
                             <span>/เดือน</span>
                           </div>
                         </div>
-                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 259 บาท</p>
+                        <p
+                          class="text-[10px] sm:text-[10px] text-charcoal-grey-disabled line-through text-right pr-1 sm:px-4">
+                          ปกติ 259 บาท</p>
                       </div>
                     </label>
                     <label
-                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5"
                           x-model="$store.plan.addOns.tvPack">
@@ -380,21 +498,24 @@
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">Asian Combo</span>
                       </div>
-                      <div class="shrink-0">
+                      <div class="shrink-0 text-right">
                         <div class="inline-flex items-center gap-2 px-4 py-2">
-                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                          <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                             139
                           </span>
-                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <div
+                            class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                             <span>บาท</span>
                             <span>/เดือน</span>
                           </div>
                         </div>
-                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 159 บาท</p>
+                        <p
+                          class="text-[10px] sm:text-[10px] text-charcoal-grey-disabled line-through text-right pr-1 sm:px-4">
+                          ปกติ 159 บาท</p>
                       </div>
                     </label>
                     <label
-                      class="flex items-center gap-4 px-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="now_ent_plus" class="accent-tol-red w-5 h-5"
                           x-model="$store.plan.addOns.tvPack">
@@ -414,20 +535,23 @@
                           </div>
                         </div>
                       </div>
-                      <div class="shrink-0">
+                      <div class="shrink-0 text-right">
                         <div class="inline-flex items-center gap-2 px-4 py-2">
-                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                          <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                             180
                           </span>
-                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <div
+                            class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                             <span>บาท</span>
                             <span>/เดือน</span>
                           </div>
                         </div>
-                        <p class="text-[10px] text-charcoal-grey-disabled line-through text-right px-4">ปกติ 199 บาท</p>
+                        <p
+                          class="text-[10px] sm:text-[10px] text-charcoal-grey-disabled line-through text-right pr-1 sm:px-4">
+                          ปกติ 199 บาท</p>
                       </div>
                     </label>
-                    <label class="flex items-center gap-4 px-4 py-4 cursor-pointer">
+                    <label class="flex items-center justify-between gap-2 sm:gap-4 py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5"
                           x-model="$store.plan.addOns.tvPack">
@@ -436,12 +560,13 @@
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</span>
                       </div>
-                      <div class="shrink-0">
+                      <div class="shrink-0 text-right">
                         <div class="inline-flex items-center gap-2 px-4 py-2">
-                          <span class="text-[24px] font-bold leading-none text-tol-red">
+                          <span class="plan-price-value text-[24px] font-bold leading-none text-tol-red">
                             99
                           </span>
-                          <div class="flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
+                          <div
+                            class="plan-price-unit flex flex-col leading-tight text-left text-tol-red text-[11px] font-semibold">
                             <span>บาท</span>
                             <span>/เดือน</span>
                           </div>
@@ -576,7 +701,7 @@
 
     <!-- Summary Footer -->
     <section id="summaryFooter" class="max-w-[1128px] mx-auto px-4 my-10">
-      <div class="bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
+      <div class="faq-card bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
         <div class="summary-accordion">
 
           <!-- Accordion item 1: Main plan details -->
@@ -595,11 +720,23 @@
                 </svg>
               </span>
             </button>
-            <div class="summary-accordion-panel pb-3 pl-7 text-[12px] text-[rgba(48,60,70,0.85)] hidden">
-              <ul class="list-disc pl-4 space-y-1">
-                <li>ความเร็วอินเทอร์เน็ตตามแพ็กเกจที่เลือก (เช่น 1000/500 Mbps)</li>
-                <li>ระยะสัญญา 12 หรือ 24 เดือน ตามที่เลือก</li>
-                <li>ค่าแรกเข้า 890 บาท (ชำระครั้งเดียว)</li>
+            <div class="summary-accordion-panel pb-3 text-[12px] text-[rgba(48,60,70,0.85)] hidden">
+              <ul class="list-disc pl-4 space-y-3 mb-4">
+                <li><strong>Q : ค่าบริการรวม VAT แล้วหรือไม่</strong><br>A : ยังไม่รวม VAT</li>
+                <li><strong>Q : สามารถสมัครเพิ่มซิมมือถือได้กี่ซิม</strong><br>A : 1 ซิม</li>
+                <li><strong>Q : สามารถสมัครเพิ่ม MESH WiFi ได้กี่จุด</strong><br>A : สมัครวันแรก สามารถสมัครเพิ่มสูงสุด
+                  4 จุด โดยมีค่าบริการเพิ่ม 100 บาท/เดือน/จุด</li>
+                <li><strong>Q : สามารถสมัครเพิ่ม CCTV ได้กี่จุด</strong><br>A : สมัครวันแรก สามารถสมัครเพิ่มสูงสุด 1 จุด
+                  โดยเสียค่าบริการเพิ่มเริ่ม 99 บาท/เดือน/จุด และหลังติดตั้งบริการสามารถสมัครเพิ่มได้สูงสุดอีก 4 จุด
+                  ดังนั้น รวมเป็น 5 จุด และเนื่องจาก CCTV มีสัญญา 24 เดือน หากยกเลิกบริการ CCTV ก่อนครบสัญญา
+                  ต้องชำระค่าบริการ 1,290 บาท/จุดให้กับบริษัทฯ</li>
+                <li><strong>Q : สามารถสมัครเพิ่ม CCTV 1 จุด รายเดือน 99 บาท และ CCTV 1 จุดพร้อมประกันอัคคีภัย รายเดือน
+                    179 บาท พร้อมกันได้หรือไม่</strong><br>A : สำหรับการเพิ่มความปลอดภัย
+                  สามารถเลือกสมัครได้อย่างใดอย่างหนึ่งเท่านั้น</li>
+                <li><strong>Q : ประกันอัคคีภัยคุ้มครองกี่เดือน และสามารถลงทะเบียนรับสิทธิ์ได้อย่างไร</strong><br>A :
+                  ประกันอัคคีภัยคุ้มครอง 24 เดือน โดยคลิกเพื่อรับสิทธิ์หลังติดตั้งบริการทรูออนไลน์สำเร็จ
+                  และผู้รับสิทธิ์ควรศึกษารายละเอียดเงื่อนไขความคุ้มครอง
+                  ก่อนตัดสินใจทำประกันภัยทุกครั้ง <a href="#" class="text-tol-blue underline">คลิก</a></li>
               </ul>
             </div>
           </div>

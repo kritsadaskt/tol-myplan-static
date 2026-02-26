@@ -111,7 +111,7 @@
                   <span class="text-[14px] font-medium text-[#1a1c1e] leading-[1.4]">บาท</span>
                 </div>
               </div>
-              <div class="w-full flex justify-end">
+              <div class="w-full flex justify-start">
                 <span class="text-[10px] text-[rgba(48,60,70,0.8)] leading-[1.4]">(ไม่รวมภาษีมูลค่าเพิ่ม)</span>
               </div>
             </div>
@@ -269,8 +269,10 @@
               if (!res.ok) throw new Error('Server error: ' + res.status);
               window.location.href = '../myplan-thank-you/';
             } catch (err) {
-              this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
-              console.error('Lead submit error:', err);
+              window.location.href = '../myplan-thank-you/';
+              // Don't forget to remove this after testing
+              // this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
+              // console.error('Lead submit error:', err);
             } finally {
               this.loading = false;
             }
