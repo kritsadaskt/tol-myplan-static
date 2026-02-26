@@ -40,6 +40,7 @@ document.addEventListener('alpine:init', () => {
             tvPack: null,
         },
         detailOpen: false,
+        planError: false,
 
         /* ── Getters ── */
         get selectedPlan() {
@@ -81,6 +82,23 @@ document.addEventListener('alpine:init', () => {
             this.detailOpen = !this.detailOpen;
         },
 
+        /**
+         * Guard: require a plan before allowing add-on selection.
+         * If no plan is selected → revert the add-on, show error, scroll to Step 1.
+         * @param {Function} revertFn – callback to undo the add-on toggle
+         * @returns {boolean} true if plan exists, false if blocked
+         */
+        requirePlan(revertFn) {
+            if (this.selectedPlanId) return true;
+            // Revert the add-on selection
+            if (typeof revertFn === 'function') revertFn();
+            this.planError = true;
+            // Smooth-scroll to Step 1
+            const el = document.getElementById('contract_period_group');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
+        },
+
         /** Serialize current selection → sessionStorage (called before navigating to summary) */
         persistToSession() {
             const snapshot = {
@@ -93,6 +111,13 @@ document.addEventListener('alpine:init', () => {
             };
             sessionStorage.setItem('myplan_selection', JSON.stringify(snapshot));
         },
+    });
+
+    /* ── Watcher: clear planError when a plan is selected ── */
+    Alpine.effect(() => {
+        if (Alpine.store('plan').selectedPlanId) {
+            Alpine.store('plan').planError = false;
+        }
     });
 });
 
