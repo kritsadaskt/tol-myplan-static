@@ -22,6 +22,12 @@
       background: var(--tds-ref-primary-primary95, #FFEDEA) !important;
     }
 
+    /* Plan-required error border on Step 1 card */
+    .plan-error-border {
+      border: 2px solid var(--tds-sys-light-primary, #E00000) !important;
+      transition: border-color 0.3s ease;
+    }
+
     .summary-accordion-icon svg {
       transition: transform 0.2s ease;
       transform-origin: center;
@@ -130,7 +136,7 @@
   </section>
 
   <!-- Logo + Tagline -->
-  <div class="bg-[#fafafa]">
+  <div class="bg-[#fafafa]" :style="$store.plan.hasSelection ? 'padding-bottom: 160px' : ''">
     <div class="max-w-[1128px] mx-auto px-4 pt-10 pb-4 text-center">
       <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN"
         class="w-[210px] sm:w-[360px] h-auto object-contain mx-auto mb-4">
@@ -158,7 +164,8 @@
             </div>
 
             <div
-              class="addon-box contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
+              class="addon-box contract-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2"
+              :class="{ 'plan-error-border': $store.plan.planError }">
 
               <!-- Plan 1: 1000/500 Mbps / 12mo / 699 -->
               <label class="flex items-center gap-2 sm:gap-4 py-4 border-b border-[rgba(48,60,70,0.18)] cursor-pointer">
@@ -284,6 +291,9 @@
                 ค่าแรกเข้า 890 บาท (จากปกติ 2,000 บาท)</span><span class="sm:hidden">เงื่อนไข : สัญญา 12 หรือ 24 เดือน |
                 ค่าแรกเข้า 890 บาท (ปกติ 2,000 บาท)</span>
             </p>
+            <p class="text-[12px] text-tol-red font-bold mt-1 px-1" x-show="$store.plan.planError" x-cloak x-transition>
+              *กรุณาเลือกความเร็วและระยะสัญญาก่อนค่ะ
+            </p>
           </div>
 
           <!-- Step 2: Add-ons -->
@@ -313,7 +323,8 @@
                   class="addon-box flex items-center gap-2 sm:gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mobile" class="accent-tol-red w-5 h-5"
-                      x-model="$store.plan.addOns.mobilePack">
+                      x-model="$store.plan.addOns.mobilePack"
+                      @change="$store.plan.requirePlan(() => { $store.plan.addOns.mobilePack = false })">
                   </div>
                   <img src="../assets/images/sim-true.png" alt="sim-true" class="w-10 h-10 object-contain">
                   <div class="flex-1">
@@ -345,7 +356,8 @@
                   class="addon-box flex items-center gap-2 sm:gap-4 bg-white h-[80px] rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2 cursor-pointer">
                   <div class="w-12 h-12 flex items-center justify-center shrink-0">
                     <input type="checkbox" name="addon_mesh" class="accent-tol-red w-5 h-5"
-                      x-model="$store.plan.addOns.meshWifi">
+                      x-model="$store.plan.addOns.meshWifi"
+                      @change="$store.plan.requirePlan(() => { $store.plan.addOns.meshWifi = false })">
                   </div>
                   <img src="../assets/images/mesh.png" alt="mesh" class="w-10 h-10 object-contain">
                   <div class="flex-1">
@@ -380,7 +392,8 @@
                     class="flex items-center gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5"
-                        x-model="$store.plan.addOns.cctv">
+                        x-model="$store.plan.addOns.cctv"
+                        @change="$store.plan.requirePlan(() => { $store.plan.addOns.cctv = null })">
                     </div>
                     <div class="flex-1 flex flex-col gap-3">
                       <div class="flex items-center gap-3">
@@ -413,7 +426,8 @@
                   <label class="flex items-center gap-2 sm:gap-4 py-4 cursor-pointer">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
                       <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5"
-                        x-model="$store.plan.addOns.cctv">
+                        x-model="$store.plan.addOns.cctv"
+                        @change="$store.plan.requirePlan(() => { $store.plan.addOns.cctv = null })">
                     </div>
                     <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
                     <div class="flex-1">
@@ -452,7 +466,8 @@
                       class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack">
+                          x-model="$store.plan.addOns.tvPack"
+                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-2 sm:gap-4">
@@ -490,7 +505,8 @@
                       class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack">
+                          x-model="$store.plan.addOns.tvPack"
+                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
                       </div>
                       <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
                       <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
@@ -518,7 +534,8 @@
                       class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="now_ent_plus" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack">
+                          x-model="$store.plan.addOns.tvPack"
+                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
@@ -554,7 +571,8 @@
                     <label class="flex items-center justify-between gap-2 sm:gap-4 py-4 cursor-pointer">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
                         <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack">
+                          x-model="$store.plan.addOns.tvPack"
+                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
                       </div>
                       <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
                       <div class="flex-1">
@@ -589,9 +607,9 @@
     <!-- Promo Banner: NOW ENT -->
     <section id="promoBanner" class="max-w-[1128px] mx-auto px-4 mb-10">
       <div class="flex items-center justify-between gap-6">
-        <a href="#">
+        <a href="https://www.true.th/promotion/true-online/now-ent" title="NOW ENT" rel="noopener noreferrer"
+          class="w-full h-full">
           <img src="../assets/images/entertainment-banner.png" alt="NOW ENT" class="w-full h-full object-contain">
-        </a>
         </a>
       </div>
     </section>
@@ -695,7 +713,7 @@
           </div>
         </div>
         <!-- Dot Pagination -->
-        <div class="recommended-packages-pagination mt-4 flex items-center justify-center gap-2 pb-2"></div>
+        <div class="recommended-packages-pagination mt-4 flex items-center justify-center gap-1.5 pb-2"></div>
       </div>
     </section>
 
