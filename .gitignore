@@ -3,3 +3,9 @@ assets/.DS_Store
 .DS_Store
 .vscode/settings.json
 styles.css
+TOL_MyPlan_CRM_API_Spec.md
+
+# CRM API proxy (Phase 1)
+promotion/true-online/config.php
+promotion/true-online/counter.txt
+promotion/true-online/logs/
