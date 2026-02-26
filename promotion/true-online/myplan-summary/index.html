@@ -63,9 +63,10 @@
               <template x-if="plan">
                 <div class="flex gap-4 items-end pt-4">
                   <div class="flex-1 min-w-0 flex flex-col gap-[2px] overflow-hidden">
-                    <p class="text-[14px] font-medium text-[#1a1c1e] leading-[1.4]" x-text="'ความเร็ว ' + plan.speed">
+                    <p class="text-[14px] font-medium text-[#1a1c1e] leading-[1.4]"
+                      x-text="plan.contract ? 'ความเร็ว ' + plan.speed : plan.speed">
                     </p>
-                    <p class="text-[14px] text-charcoal-grey leading-[1.4]"
+                    <p class="text-[14px] text-charcoal-grey leading-[1.4]" x-show="plan.contract"
                       x-text="'สัญญา ' + plan.contract + ' เดือน'"></p>
                   </div>
                   <p class="text-[14px] font-medium text-right whitespace-nowrap shrink-0">
@@ -211,16 +212,41 @@
   <script>
     /**
      * Alpine.data — leadForm
-     * Hydrates plan selection from sessionStorage and handles lead form submission.
+     * Hydrates plan selection from sessionStorage OR URL preset params.
+     * Preset params (from recommended/special cards): ?preset=BU-XXXXX&pkg=...&price=...&name=...
      */
     document.addEventListener('alpine:init', () => {
       Alpine.data('leadForm', () => {
         const data = loadFromSession();
+        const presetParams = new URLSearchParams(window.location.search);
+        const presetBuCode = presetParams.get('preset') || '';
+        const presetPkg = presetParams.get('pkg') || '';
+        const presetPrice = parseInt(presetParams.get('price'), 10) || 0;
+        const presetName = presetParams.get('name') || '';
+        const isPreset = !!(presetBuCode && presetPrice);
+
+        // Build plan object: URL preset params take priority (clicked package card),
+        // fall back to sessionStorage (came from the configurator flow).
+        let plan, activeAddons, total;
+        if (isPreset) {
+          plan = { speed: presetName, contract: null, price: presetPrice };
+          activeAddons = [];
+          total = presetPrice;
+        } else if (data && data.plan) {
+          plan = data.plan;
+          activeAddons = data.activeAddons || [];
+          total = data.total || 0;
+        } else {
+          plan = null;
+          activeAddons = [];
+          total = 0;
+        }
+
         return {
-          /* Plan data from sessionStorage */
-          plan: data ? data.plan : null,
-          activeAddons: data ? (data.activeAddons || []) : [],
-          total: data ? (data.total || 0) : 0,
+          /* Plan data */
+          plan,
+          activeAddons,
+          total,
 
           /* Form fields */
           fields: { name: '', surname: '', phone: '' },
@@ -254,19 +280,15 @@
             let utm = { campaign: '', source: '', medium: '' };
             try { utm = JSON.parse(sessionStorage.getItem('myplan_utm')) || utm; } catch (e) { /* ignore */ }
 
-            // Check for preset package (from recommended/special cards)
-            const presetParams = new URLSearchParams(window.location.search);
-            const presetBuCode = presetParams.get('preset') || '';
-
             const payload = {
-              // CRM fields
+              // CRM fields — preset BU code takes priority
               campaignCode: presetBuCode || (data && data.buCode) || 'BU-18269',
-              packageCode: (data && data.packageCode) || presetParams.get('pkg') || '',
+              packageCode: presetPkg || (data && data.packageCode) || '',
               firstName: this.fields.name.trim(),
               lastName: this.fields.surname.trim(),
               phone: this.fields.phone.trim(),
               dataSource: [utm.campaign, utm.source, utm.medium].filter(Boolean).join('|'),
-              // Add-on CRM codes
+              // Add-on CRM codes (empty for preset packages)
               offerSGM: (data && data.crmAddons && data.crmAddons.OfferSGM) || '',
               telcoOffer: (data && data.crmAddons && data.crmAddons.TelcoOffer) || '',
               nonTelcoOffer: (data && data.crmAddons && data.crmAddons.NonTelcoOffer) || '',
