@@ -104,18 +104,51 @@
 
           <!-- Total Row -->
           <template x-if="plan">
-            <div class="w-full flex flex-col items-center pt-2 pb-6">
-              <div class="w-full flex items-center justify-between">
-                <span class="text-[16px] font-medium text-charcoal-grey leading-[1.4]">สรุปค่าบริการรายเดือน</span>
-                <div class="flex items-center gap-1">
-                  <span class="text-[18px] font-bold text-tol-red leading-7 tracking-[0.018px]"
-                    x-text="total.toLocaleString()"></span>
-                  <span class="text-[14px] font-medium text-[#1a1c1e] leading-[1.4]">บาท</span>
+            <div class="w-full flex flex-col pt-2 pb-6">
+
+              <!-- ── PRIVILEGE PACKAGE (has specialNote): 2-row layout ── -->
+              <template x-if="specialNote">
+                <div class="flex flex-col gap-0.5">
+                  <!-- Row 1: regular price (muted) -->
+                  <div class="flex items-center justify-between py-1">
+                    <span class="text-[14px] text-[rgba(48,60,70,0.55)] leading-[1.4]">สรุปค่าบริการรายเดือน</span>
+                    <span class="text-[14px] text-[rgba(48,60,70,0.55)] leading-[1.4]"
+                      x-text="(originalTotal || total).toLocaleString() + ' บาท'"></span>
+                  </div>
+                  <!-- Row 2: special price -->
+                  <div class="flex items-baseline justify-between py-1">
+                    <span
+                      class="text-[14px] font-bold text-tol-red leading-[1.6]">พิเศษสำหรับลูกค้าซิมทรูรายเดือน</span>
+                    <div class="flex flex-col items-end shrink-0 ml-3">
+                      <div class="flex items-baseline gap-1">
+                        <span class="text-[14px] font-medium text-charcoal-grey">เหลือเพียง</span>
+                        <span class="text-[22px] font-bold text-tol-red leading-none"
+                          x-text="total.toLocaleString()"></span>
+                        <span class="text-[14px] font-bold text-charcoal-grey">บาท</span>
+                      </div>
+                      <span class="text-[10px] text-[rgba(48,60,70,0.8)] mt-0.5">(ไม่รวมภาษีมูลค่าเพิ่ม)</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="w-full flex justify-start">
-                <span class="text-[10px] text-[rgba(48,60,70,0.8)] leading-[1.4]">(ไม่รวมภาษีมูลค่าเพิ่ม)</span>
-              </div>
+              </template>
+
+              <!-- ── REGULAR PACKAGE: single row ── -->
+              <template x-if="!specialNote">
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[16px] font-medium text-charcoal-grey leading-[1.4]">สรุปค่าบริการรายเดือน</span>
+                    <div class="flex items-center gap-1">
+                      <span class="text-[18px] font-bold text-tol-red leading-7 tracking-[0.018px]"
+                        x-text="total.toLocaleString()"></span>
+                      <span class="text-[14px] font-medium text-[#1a1c1e] leading-[1.4]">บาท</span>
+                    </div>
+                  </div>
+                  <div class="w-full flex justify-end">
+                    <span class="text-[10px] text-[rgba(48,60,70,0.8)] leading-[1.4]">(ไม่รวมภาษีมูลค่าเพิ่ม)</span>
+                  </div>
+                </div>
+              </template>
+
             </div>
           </template>
 
@@ -212,9 +245,90 @@
 
   <script>
     /**
+     * Preset package details keyed by BU code.
+     * Source: bu_code_with_data.md
+     * Each entry has:
+     *   plan         – { speed, contract, price }  (base internet line)
+     *   activeAddons – [{ label, price }, …]       (add-on rows)
+     *   total        – final special/bundle price  (shown as the grand total)
+     *   originalTotal– (optional) regular price before special discount
+     *   specialNote  – (optional) note to display below the total
+     */
+    const PRESET_PACKAGES = {
+      /* ── Recommended packages ── */
+      'BU-18115': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'MESH WiFi 1 จุด', price: 100 },
+        ],
+        total: 599,
+      },
+      'BU-18117': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'CCTV 1 ตัว', price: 99 },
+        ],
+        total: 598,
+      },
+      'BU-18118': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'Asian Combo', price: 139 },
+        ],
+        total: 638,
+      },
+      'BU-18119': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'TrueVisions NOW ENT', price: 99 },
+        ],
+        total: 598,
+      },
+      'BU-18268': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'ซิมเน็ตเต็มสปีด 20GB', price: 120 },
+        ],
+        total: 619,
+      },
+      /* ── Special (privilege) packages ── */
+      'BU-18319': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'ซิมเน็ตเต็มสปีด 20GB', price: 120 },
+          { label: 'CCTV 1 ตัว', price: 99 },
+          { label: 'Asian Combo', price: 139 },
+        ],
+        total: 749,
+        originalTotal: 857,
+        specialNote: 'พิเศษสำหรับลูกค้าซิมทรูรายเดือน เหลือเพียง 749 บาท/เดือน',
+      },
+      'BU-18320': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'CCTV 1 ตัว', price: 99 },
+          { label: 'Asian Combo', price: 139 },
+        ],
+        total: 649,
+        originalTotal: 737,
+        specialNote: 'พิเศษสำหรับลูกค้าซิมทรูรายเดือน เหลือเพียง 649 บาท/เดือน',
+      },
+      'BU-18321': {
+        plan: { speed: '500/500 Mbps', contract: 24, price: 499 },
+        activeAddons: [
+          { label: 'CCTV 1 ตัว', price: 99 },
+        ],
+        total: 549,
+        originalTotal: 598,
+        specialNote: 'พิเศษสำหรับลูกค้าซิมทรูรายเดือน เหลือเพียง 549 บาท/เดือน',
+      },
+    };
+
+    /**
      * Alpine.data — leadForm
      * Hydrates plan selection from sessionStorage OR URL preset params.
      * Preset params (from recommended/special cards): ?preset=BU-XXXXX&pkg=...&price=...&name=...
+     * If the BU code is found in PRESET_PACKAGES, the full breakdown is used.
      */
     document.addEventListener('alpine:init', () => {
       Alpine.data('leadForm', () => {
@@ -228,11 +342,25 @@
 
         // Build plan object: URL preset params take priority (clicked package card),
         // fall back to sessionStorage (came from the configurator flow).
-        let plan, activeAddons, total;
+        let plan, activeAddons, total, originalTotal, specialNote;
+        originalTotal = null;
+        specialNote = null;
+
         if (isPreset) {
-          plan = { speed: presetName, contract: null, price: presetPrice };
-          activeAddons = [];
-          total = presetPrice;
+          const pkgData = PRESET_PACKAGES[presetBuCode];
+          if (pkgData) {
+            // Rich breakdown from the lookup map
+            plan = pkgData.plan;
+            activeAddons = pkgData.activeAddons;
+            total = pkgData.total;
+            originalTotal = pkgData.originalTotal || null;
+            specialNote = pkgData.specialNote || null;
+          } else {
+            // Fallback: generic name + price (old behaviour)
+            plan = { speed: presetName, contract: null, price: presetPrice };
+            activeAddons = [];
+            total = presetPrice;
+          }
         } else if (data && data.plan) {
           plan = data.plan;
           activeAddons = data.activeAddons || [];
@@ -248,6 +376,8 @@
           plan,
           activeAddons,
           total,
+          originalTotal,
+          specialNote,
 
           /* Form fields */
           fields: { name: '', surname: '', phone: '' },
