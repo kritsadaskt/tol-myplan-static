@@ -389,11 +389,17 @@
                 <div
                   class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
                   <label
-                    class="flex items-center gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
+                    class="flex items-center gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer"
+                    @click.prevent="
+                      const r = $el.querySelector('input');
+                      if (r.checked) { $store.plan.addOns.cctv = null; r.checked = false }
+                      else if ($store.plan.requirePlan(() => { $store.plan.addOns.cctv = null; r.checked = false })) {
+                        const prev = $el.closest('.addon-box').querySelector('input[name=addon_cctv]:checked');
+                        if (prev) prev.checked = false;
+                        $store.plan.addOns.cctv = 'cctv_premium'; r.checked = true }
+                    ">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                      <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5"
-                        x-model="$store.plan.addOns.cctv"
-                        @change="$store.plan.requirePlan(() => { $store.plan.addOns.cctv = null })">
+                      <input type="radio" name="addon_cctv" value="cctv_premium" class="accent-tol-red w-5 h-5">
                     </div>
                     <div class="flex-1 flex flex-col gap-3">
                       <div class="flex items-center gap-3">
@@ -423,11 +429,16 @@
                       </div>
                     </div>
                   </label>
-                  <label class="flex items-center gap-2 sm:gap-4 py-4 cursor-pointer">
+                  <label class="flex items-center gap-2 sm:gap-4 py-4 cursor-pointer" @click.prevent="
+                      const r = $el.querySelector('input');
+                      if (r.checked) { $store.plan.addOns.cctv = null; r.checked = false }
+                      else if ($store.plan.requirePlan(() => { $store.plan.addOns.cctv = null; r.checked = false })) {
+                        const prev = $el.closest('.addon-box').querySelector('input[name=addon_cctv]:checked');
+                        if (prev) prev.checked = false;
+                        $store.plan.addOns.cctv = 'cctv_basic'; r.checked = true }
+                    ">
                     <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                      <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5"
-                        x-model="$store.plan.addOns.cctv"
-                        @change="$store.plan.requirePlan(() => { $store.plan.addOns.cctv = null })">
+                      <input type="radio" name="addon_cctv" value="cctv_basic" class="accent-tol-red w-5 h-5">
                     </div>
                     <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
                     <div class="flex-1">
@@ -463,11 +474,16 @@
                   <div
                     class="addon-box bg-white rounded-[16px] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.08)] w-full px-6 py-2">
                     <label
-                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer"
+                      @click.prevent="
+                        const r = $el.querySelector('input');
+                        if (r.checked) { $store.plan.addOns.tvPack = null; r.checked = false }
+                        else if ($store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null; r.checked = false })) {
+                          document.querySelectorAll('input[name=addon_tv]:checked').forEach(i => i.checked = false);
+                          $store.plan.addOns.tvPack = 'asian_combo_plus'; r.checked = true }
+                      ">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                        <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack"
-                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
+                        <input type="radio" name="addon_tv" value="asian_combo_plus" class="accent-tol-red w-5 h-5">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-2 sm:gap-4">
@@ -502,11 +518,16 @@
                       </div>
                     </label>
                     <label
-                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer"
+                      @click.prevent="
+                        const r = $el.querySelector('input');
+                        if (r.checked) { $store.plan.addOns.tvPack = null; r.checked = false }
+                        else if ($store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null; r.checked = false })) {
+                          document.querySelectorAll('input[name=addon_tv]:checked').forEach(i => i.checked = false);
+                          $store.plan.addOns.tvPack = 'asian_combo'; r.checked = true }
+                      ">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                        <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack"
-                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
+                        <input type="radio" name="addon_tv" value="asian_combo" class="accent-tol-red w-5 h-5">
                       </div>
                       <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
                       <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
@@ -531,11 +552,16 @@
                       </div>
                     </label>
                     <label
-                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer">
+                      class="flex items-center justify-between gap-2 sm:gap-4 border-b border-[rgba(48,60,70,0.18)] py-4 cursor-pointer"
+                      @click.prevent="
+                        const r = $el.querySelector('input');
+                        if (r.checked) { $store.plan.addOns.tvPack = null; r.checked = false }
+                        else if ($store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null; r.checked = false })) {
+                          document.querySelectorAll('input[name=addon_tv]:checked').forEach(i => i.checked = false);
+                          $store.plan.addOns.tvPack = 'now_ent_plus'; r.checked = true }
+                      ">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                        <input type="radio" name="addon_tv" value="now_ent_plus" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack"
-                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
+                        <input type="radio" name="addon_tv" value="now_ent_plus" class="accent-tol-red w-5 h-5">
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
@@ -568,11 +594,15 @@
                           ปกติ 199 บาท</p>
                       </div>
                     </label>
-                    <label class="flex items-center justify-between gap-2 sm:gap-4 py-4 cursor-pointer">
+                    <label class="flex items-center justify-between gap-2 sm:gap-4 py-4 cursor-pointer" @click.prevent="
+                        const r = $el.querySelector('input');
+                        if (r.checked) { $store.plan.addOns.tvPack = null; r.checked = false }
+                        else if ($store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null; r.checked = false })) {
+                          document.querySelectorAll('input[name=addon_tv]:checked').forEach(i => i.checked = false);
+                          $store.plan.addOns.tvPack = 'now_ent'; r.checked = true }
+                      ">
                       <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                        <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5"
-                          x-model="$store.plan.addOns.tvPack"
-                          @change="$store.plan.requirePlan(() => { $store.plan.addOns.tvPack = null })">
+                        <input type="radio" name="addon_tv" value="now_ent" class="accent-tol-red w-5 h-5">
                       </div>
                       <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
                       <div class="flex-1">
