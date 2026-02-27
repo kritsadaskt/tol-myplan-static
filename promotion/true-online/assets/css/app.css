@@ -49,20 +49,6 @@
   transform: translateY(-4px);
 }
 
-/* Right fade overlay */
-.recommended-packages-swiper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 64px;
-  height: calc(100% - 48px);
-  /* exclude pagination area */
-  background: linear-gradient(to right, transparent, #fafafa);
-  pointer-events: none;
-  z-index: 2;
-}
-
 /* Dot pagination — Figma: active = red pill, inactive = gray dot */
 .recommended-packages-pagination .swiper-pagination-bullet {
   width: 6px;
@@ -112,19 +98,6 @@
   .special-packages-swiper .swiper-slide {
     width: calc((100vw + 1012px) / 8);
   }
-}
-
-/* Right fade overlay — blends into the gradient bg end color */
-.special-packages-swiper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 64px;
-  height: calc(100% - 48px);
-  background: linear-gradient(to right, transparent, #BEE9FF);
-  pointer-events: none;
-  z-index: 2;
 }
 
 /* Dot pagination */

@@ -2,7 +2,13 @@
  *  TRUE ONLINE — MY Plan  ·  Alpine.js Store  *
  * ──────────────────────────────────────────── */
 
-const API_ENDPOINT = '../api.php';
+const API_ENDPOINT = (() => {
+    const host = window.location.hostname;
+    const isLocal = host === 'localhost' || host === '127.0.0.1';
+    return isLocal
+        ? '../api.php'
+        : 'https://tol.otters.dev/promotion/true-online/api.php';
+})();
 
 /* ── Plans ── */
 const PLANS = [
@@ -18,7 +24,7 @@ const ADDON_PRICES = {
     meshWifi: { label: 'MESH WiFi 1 จุด', price: 100 },
     cctv_premium: { label: 'CCTV 1 ตัว + ประกันอัคคีภัย', price: 179 },
     cctv_basic: { label: 'CCTV 1 ตัว', price: 99 },
-    asian_combo_plus: { label: 'Asian Combo + กล่อง TrueID TV', price: 240 },
+    asian_combo_plus: { label: 'Asian Combo + กล่อง TrueID TV', price: 200 },
     asian_combo: { label: 'Asian Combo', price: 139 },
     now_ent_plus: { label: 'TrueVisions NOW ENT + กล่อง TrueID TV', price: 180 },
     now_ent: { label: 'TrueVisions NOW ENT', price: 99 },
