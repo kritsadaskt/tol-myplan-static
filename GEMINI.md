@@ -70,7 +70,7 @@ Replace this constant when the backend is ready.
 | meshWifi | Mesh WiFi | 100 ฿ |
 | cctv_premium | CCTV 1 ตัว + ประกันอัคคีภัย | 179 ฿ |
 | cctv_basic | CCTV 1 ตัว | 99 ฿ |
-| asian_combo_plus | Asian Combo + กล่อง TrueID TV | 240 ฿ |
+| asian_combo_plus | Asian Combo + กล่อง TrueID TV | 200 ฿ |
 | asian_combo | Asian Combo | 139 ฿ |
 | now_ent_plus | TrueVisions NOW ENT + กล่อง TrueID TV | 180 ฿ |
 | now_ent | TrueVisions NOW ENT | 99 ฿ |
