@@ -149,11 +149,20 @@
                 </div>
               </template>
 
+              <!-- ── SALE MODE: MKT Code display ── -->
+              <template x-if="isSaleMode">
+                <div class="w-full flex flex-col items-center mt-4 pt-4 border-t border-[rgba(48,60,70,0.18)]">
+                  <span class="text-[14px] font-medium text-charcoal-grey leading-[1.4]">MKT Code</span>
+                  <span class="text-[28px] font-bold text-tol-red leading-[1.4] tracking-wide mt-1"
+                    x-text="mktCode"></span>
+                </div>
+              </template>
+
             </div>
           </template>
 
-          <!-- Lead Form Section -->
-          <div class="w-full flex flex-col gap-6 items-center">
+          <!-- Lead Form Section (hidden in sale mode) -->
+          <div class="w-full flex flex-col gap-6 items-center" x-show="!isSaleMode">
 
             <!-- Title -->
             <p class="text-[16px] md:text-[24px] font-medium text-charcoal-grey leading-[1.4] text-center">
@@ -219,14 +228,14 @@
         </div>
 
         <!-- API Error -->
-        <template x-if="apiError">
+        <template x-if="apiError && !isSaleMode">
           <div class="w-full max-w-[358px] p-3 bg-[#FFF0F0] border border-tol-red rounded-[8px]">
             <p class="text-[13px] text-tol-red" x-text="apiError"></p>
           </div>
         </template>
 
-        <!-- Submit Button -->
-        <button type="button" @click="submit()"
+        <!-- Submit Button (hidden in sale mode) -->
+        <button type="button" @click="submit()" x-show="!isSaleMode"
           class="bg-tol-red w-full md:w-[358px] h-10 flex items-center justify-center rounded-full text-[14px] font-medium text-white tracking-[0.014px] hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50"
           :disabled="loading">
           <span x-show="!loading">สมัครบริการ</span>
@@ -339,6 +348,7 @@
         const presetPrice = parseInt(presetParams.get('price'), 10) || 0;
         const presetName = presetParams.get('name') || '';
         const isPreset = !!(presetBuCode && presetPrice);
+        const isSaleMode = presetParams.get('sale') === '1';
 
         // Build plan object: URL preset params take priority (clicked package card),
         // fall back to sessionStorage (came from the configurator flow).
@@ -378,6 +388,18 @@
           total,
           originalTotal,
           specialNote,
+
+          /* Sale mode */
+          isSaleMode,
+          mktCode: (() => {
+            if (!plan || !plan.speed || !plan.contract) return 'UNKNOWN';
+            if (isPreset) {
+              const derivedAddons = deriveAddonsFromPreset(activeAddons);
+              return lookupMktCode(plan.speed, plan.contract, derivedAddons);
+            }
+            if (data && data.mktCode) return data.mktCode;
+            return 'UNKNOWN';
+          })(),
 
           /* Form fields */
           fields: { name: '', surname: '', phone: '' },
