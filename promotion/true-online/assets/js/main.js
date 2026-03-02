@@ -53,6 +53,214 @@ const ADDON_CRM_CODES = {
 /* ── CRM: Default BU code for self-custom plans ── */
 const BU_CODE_SELF_CUSTOM = 'BU-18269';
 
+/* ── MKT Code lookup map ── */
+/* Key = "speed|contract|SIM20GB|CCTV|CCTVIns|AsianComboBox|NowEntBox|AsianCombo|NowEnt" */
+/* All YES/NO flags; meshWifi is excluded (not in CSV). */
+const MKT_CODE_MAP = {
+    // ── 300/300, 12 months ──
+    '300/300|12|NO|NO|NO|NO|NO|NO|NO': 'FTA19-300',
+    '300/300|12|NO|YES|NO|NO|NO|NO|NO': 'FTA120-300',
+    '300/300|12|NO|NO|YES|NO|NO|NO|NO': 'FTA121-300',
+    '300/300|12|NO|NO|NO|NO|NO|NO|YES': 'FTA122-300',
+    '300/300|12|NO|NO|NO|NO|NO|YES|NO': 'FTA123-300',
+    '300/300|12|NO|YES|NO|NO|NO|NO|YES': 'FTA124-300',
+    '300/300|12|NO|YES|NO|NO|NO|YES|NO': 'FTA125-300',
+    '300/300|12|NO|NO|YES|NO|NO|NO|YES': 'FTA126-300',
+    '300/300|12|NO|NO|YES|NO|NO|YES|NO': 'FTA127-300',
+    '300/300|12|YES|NO|NO|NO|NO|NO|NO': 'FTTS205-300',
+    '300/300|12|YES|YES|NO|NO|NO|NO|NO': 'FTTS206-300',
+    '300/300|12|YES|NO|YES|NO|NO|NO|NO': 'FTTS207-300',
+    '300/300|12|YES|NO|NO|NO|NO|NO|YES': 'FTTS208-300',
+    '300/300|12|YES|NO|NO|NO|NO|YES|NO': 'FTTS209-300',
+    '300/300|12|YES|YES|NO|NO|NO|NO|YES': 'FTTS210-300',
+    '300/300|12|YES|YES|NO|NO|NO|YES|NO': 'FTTS211-300',
+    '300/300|12|YES|NO|YES|NO|NO|NO|YES': 'FTTS212-300',
+    '300/300|12|YES|NO|YES|NO|NO|YES|NO': 'FTTS213-300',
+    '300/300|12|NO|NO|NO|NO|YES|NO|NO': 'FTOT443-300',
+    '300/300|12|NO|NO|NO|YES|NO|NO|NO': 'FTOT444-300',
+    '300/300|12|NO|YES|NO|NO|YES|NO|NO': 'FTOT445-300',
+    '300/300|12|NO|YES|NO|YES|NO|NO|NO': 'FTOT446-300',
+    '300/300|12|NO|NO|YES|NO|YES|NO|NO': 'FTOT466-300',
+    '300/300|12|NO|NO|YES|YES|NO|NO|NO': 'FTOT447-300',
+    '300/300|12|YES|NO|NO|NO|YES|NO|NO': 'FTOT454-300',
+    '300/300|12|YES|NO|NO|YES|NO|NO|NO': 'FTOT455-300',
+    '300/300|12|YES|YES|NO|NO|YES|NO|NO': 'FTOT456-300',
+    '300/300|12|YES|YES|NO|YES|NO|NO|NO': 'FTOT457-300',
+    '300/300|12|YES|NO|YES|NO|YES|NO|NO': 'FTOT458-300',
+    '300/300|12|YES|NO|YES|YES|NO|NO|NO': 'FTOT459-300',
+    // ── 500/500, 24 months ──
+    '500/500|24|NO|NO|NO|NO|NO|NO|NO': 'FTA44-500',
+    '500/500|24|NO|YES|NO|NO|NO|NO|NO': 'FTA128-500',
+    '500/500|24|NO|NO|YES|NO|NO|NO|NO': 'FTA129-500',
+    '500/500|24|NO|NO|NO|NO|NO|NO|YES': 'FTA130-500',
+    '500/500|24|NO|NO|NO|NO|NO|YES|NO': 'FTA131-500',
+    '500/500|24|NO|YES|NO|NO|NO|NO|YES': 'FTA132-500',
+    '500/500|24|NO|YES|NO|NO|NO|YES|NO': 'FTA133-500',
+    '500/500|24|NO|NO|YES|NO|NO|NO|YES': 'FTA134-500',
+    '500/500|24|NO|NO|YES|NO|NO|YES|NO': 'FTA135-500',
+    '500/500|24|YES|NO|NO|NO|NO|NO|NO': 'FTTS214-500',
+    '500/500|24|YES|YES|NO|NO|NO|NO|NO': 'FTTS215-500',
+    '500/500|24|YES|NO|YES|NO|NO|NO|NO': 'FTTS216-500',
+    '500/500|24|YES|NO|NO|NO|NO|NO|YES': 'FTTS217-500',
+    '500/500|24|YES|NO|NO|NO|NO|YES|NO': 'FTTS218-500',
+    '500/500|24|YES|YES|NO|NO|NO|NO|YES': 'FTTS219-500',
+    '500/500|24|YES|YES|NO|NO|NO|YES|NO': 'FTTS220-500',
+    '500/500|24|YES|NO|YES|NO|NO|NO|YES': 'FTTS221-500',
+    '500/500|24|YES|NO|YES|NO|NO|YES|NO': 'FTTS222-500',
+    '500/500|24|NO|NO|NO|NO|YES|NO|NO': 'FTOT448-500',
+    '500/500|24|NO|NO|NO|YES|NO|NO|NO': 'FTOT449-500',
+    '500/500|24|NO|YES|NO|NO|YES|NO|NO': 'FTOT450-500',
+    '500/500|24|NO|YES|NO|YES|NO|NO|NO': 'FTOT451-500',
+    '500/500|24|NO|NO|YES|NO|YES|NO|NO': 'FTOT452-500',
+    '500/500|24|NO|NO|YES|YES|NO|NO|NO': 'FTOT453-500',
+    '500/500|24|YES|NO|NO|NO|YES|NO|NO': 'FTOT460-500',
+    '500/500|24|YES|NO|NO|YES|NO|NO|NO': 'FTOT461-500',
+    '500/500|24|YES|YES|NO|NO|YES|NO|NO': 'FTOT462-500',
+    '500/500|24|YES|YES|NO|YES|NO|NO|NO': 'FTOT463-500',
+    '500/500|24|YES|NO|YES|NO|YES|NO|NO': 'FTOT464-500',
+    '500/500|24|YES|NO|YES|YES|NO|NO|NO': 'FTOT465-500',
+    // ── 500/500, 12 months ──
+    '500/500|12|NO|NO|NO|NO|NO|NO|NO': 'FTA19-500',
+    '500/500|12|NO|YES|NO|NO|NO|NO|NO': 'FTA120-500',
+    '500/500|12|NO|NO|YES|NO|NO|NO|NO': 'FTA121-500',
+    '500/500|12|NO|NO|NO|NO|NO|NO|YES': 'FTA122-500',
+    '500/500|12|NO|NO|NO|NO|NO|YES|NO': 'FTA123-500',
+    '500/500|12|NO|YES|NO|NO|NO|NO|YES': 'FTA124-500',
+    '500/500|12|NO|YES|NO|NO|NO|YES|NO': 'FTA125-500',
+    '500/500|12|NO|NO|YES|NO|NO|NO|YES': 'FTA126-500',
+    '500/500|12|NO|NO|YES|NO|NO|YES|NO': 'FTA127-500',
+    '500/500|12|YES|NO|NO|NO|NO|NO|NO': 'FTTS205-500',
+    '500/500|12|YES|YES|NO|NO|NO|NO|NO': 'FTTS206-500',
+    '500/500|12|YES|NO|YES|NO|NO|NO|NO': 'FTTS207-500',
+    '500/500|12|YES|NO|NO|NO|NO|NO|YES': 'FTTS208-500',
+    '500/500|12|YES|NO|NO|NO|NO|YES|NO': 'FTTS209-500',
+    '500/500|12|YES|YES|NO|NO|NO|NO|YES': 'FTTS210-500',
+    '500/500|12|YES|YES|NO|NO|NO|YES|NO': 'FTTS211-500',
+    '500/500|12|YES|NO|YES|NO|NO|NO|YES': 'FTTS212-500',
+    '500/500|12|YES|NO|YES|NO|NO|YES|NO': 'FTTS213-500',
+    '500/500|12|NO|NO|NO|NO|YES|NO|NO': 'FTOT443-500',
+    '500/500|12|NO|NO|NO|YES|NO|NO|NO': 'FTOT444-500',
+    '500/500|12|NO|YES|NO|NO|YES|NO|NO': 'FTOT445-500',
+    '500/500|12|NO|YES|NO|YES|NO|NO|NO': 'FTOT446-500',
+    '500/500|12|NO|NO|YES|NO|YES|NO|NO': 'FTOT466-500',
+    '500/500|12|NO|NO|YES|YES|NO|NO|NO': 'FTOT447-500',
+    '500/500|12|YES|NO|NO|NO|YES|NO|NO': 'FTOT454-500',
+    '500/500|12|YES|NO|NO|YES|NO|NO|NO': 'FTOT455-500',
+    '500/500|12|YES|YES|NO|NO|YES|NO|NO': 'FTOT456-500',
+    '500/500|12|YES|YES|NO|YES|NO|NO|NO': 'FTOT457-500',
+    '500/500|12|YES|NO|YES|NO|YES|NO|NO': 'FTOT458-500',
+    '500/500|12|YES|NO|YES|YES|NO|NO|NO': 'FTOT459-500',
+    // ── 1000/500, 24 months ──
+    '1000/500|24|NO|NO|NO|NO|NO|NO|NO': 'FTA81-1000',
+    '1000/500|24|NO|YES|NO|NO|NO|NO|NO': 'FTA128-1000',
+    '1000/500|24|NO|NO|YES|NO|NO|NO|NO': 'FTA129-1000',
+    '1000/500|24|NO|NO|NO|NO|NO|NO|YES': 'FTA130-1000',
+    '1000/500|24|NO|NO|NO|NO|NO|YES|NO': 'FTA131-1000',
+    '1000/500|24|NO|YES|NO|NO|NO|NO|YES': 'FTA132-1000',
+    '1000/500|24|NO|YES|NO|NO|NO|YES|NO': 'FTA133-1000',
+    '1000/500|24|NO|NO|YES|NO|NO|NO|YES': 'FTA134-1000',
+    '1000/500|24|NO|NO|YES|NO|NO|YES|NO': 'FTA135-1000',
+    '1000/500|24|YES|NO|NO|NO|NO|NO|NO': 'FTTS214-1000',
+    '1000/500|24|YES|YES|NO|NO|NO|NO|NO': 'FTTS215-1000',
+    '1000/500|24|YES|NO|YES|NO|NO|NO|NO': 'FTTS216-1000',
+    '1000/500|24|YES|NO|NO|NO|NO|NO|YES': 'FTTS217-1000',
+    '1000/500|24|YES|NO|NO|NO|NO|YES|NO': 'FTTS218-1000',
+    '1000/500|24|YES|YES|NO|NO|NO|NO|YES': 'FTTS219-1000',
+    '1000/500|24|YES|YES|NO|NO|NO|YES|NO': 'FTTS220-1000',
+    '1000/500|24|YES|NO|YES|NO|NO|NO|YES': 'FTTS221-1000',
+    '1000/500|24|YES|NO|YES|NO|NO|YES|NO': 'FTTS222-1000',
+    '1000/500|24|NO|NO|NO|NO|YES|NO|NO': 'FTOT448-1000',
+    '1000/500|24|NO|NO|NO|YES|NO|NO|NO': 'FTOT449-1000',
+    '1000/500|24|NO|YES|NO|NO|YES|NO|NO': 'FTOT450-1000',
+    '1000/500|24|NO|YES|NO|YES|NO|NO|NO': 'FTOT451-1000',
+    '1000/500|24|NO|NO|YES|NO|YES|NO|NO': 'FTOT452-1000',
+    '1000/500|24|NO|NO|YES|YES|NO|NO|NO': 'FTOT453-1000',
+    '1000/500|24|YES|NO|NO|NO|YES|NO|NO': 'FTOT460-1000',
+    '1000/500|24|YES|NO|NO|YES|NO|NO|NO': 'FTOT461-1000',
+    '1000/500|24|YES|YES|NO|NO|YES|NO|NO': 'FTOT462-1000',
+    '1000/500|24|YES|YES|NO|YES|NO|NO|NO': 'FTOT463-1000',
+    '1000/500|24|YES|NO|YES|NO|YES|NO|NO': 'FTOT464-1000',
+    '1000/500|24|YES|NO|YES|YES|NO|NO|NO': 'FTOT465-1000',
+    // ── 1000/500, 12 months ──
+    '1000/500|12|NO|NO|NO|NO|NO|NO|NO': 'FTA19-1000',
+    '1000/500|12|NO|YES|NO|NO|NO|NO|NO': 'FTA120-1000',
+    '1000/500|12|NO|NO|YES|NO|NO|NO|NO': 'FTA121-1000',
+    '1000/500|12|NO|NO|NO|NO|NO|NO|YES': 'FTA122-1000',
+    '1000/500|12|NO|NO|NO|NO|NO|YES|NO': 'FTA123-1000',
+    '1000/500|12|NO|YES|NO|NO|NO|NO|YES': 'FTA124-1000',
+    '1000/500|12|NO|YES|NO|NO|NO|YES|NO': 'FTA125-1000',
+    '1000/500|12|NO|NO|YES|NO|NO|NO|YES': 'FTA126-1000',
+    '1000/500|12|NO|NO|YES|NO|NO|YES|NO': 'FTA127-1000',
+    '1000/500|12|YES|NO|NO|NO|NO|NO|NO': 'FTTS205-1000',
+    '1000/500|12|YES|YES|NO|NO|NO|NO|NO': 'FTTS206-1000',
+    '1000/500|12|YES|NO|YES|NO|NO|NO|NO': 'FTTS207-1000',
+    '1000/500|12|YES|NO|NO|NO|NO|NO|YES': 'FTTS208-1000',
+    '1000/500|12|YES|NO|NO|NO|NO|YES|NO': 'FTTS209-1000',
+    '1000/500|12|YES|YES|NO|NO|NO|NO|YES': 'FTTS210-1000',
+    '1000/500|12|YES|YES|NO|NO|NO|YES|NO': 'FTTS211-1000',
+    '1000/500|12|YES|NO|YES|NO|NO|NO|YES': 'FTTS212-1000',
+    '1000/500|12|YES|NO|YES|NO|NO|YES|NO': 'FTTS213-1000',
+    '1000/500|12|NO|NO|NO|NO|YES|NO|NO': 'FTOT443-1000',
+    '1000/500|12|NO|NO|NO|YES|NO|NO|NO': 'FTOT444-1000',
+    '1000/500|12|NO|YES|NO|NO|YES|NO|NO': 'FTOT445-1000',
+    '1000/500|12|NO|YES|NO|YES|NO|NO|NO': 'FTOT446-1000',
+    '1000/500|12|NO|NO|YES|NO|YES|NO|NO': 'FTOT466-1000',
+    '1000/500|12|NO|NO|YES|YES|NO|NO|NO': 'FTOT447-1000',
+    '1000/500|12|YES|NO|NO|NO|YES|NO|NO': 'FTOT454-1000',
+    '1000/500|12|YES|NO|NO|YES|NO|NO|NO': 'FTOT455-1000',
+    '1000/500|12|YES|YES|NO|NO|YES|NO|NO': 'FTOT456-1000',
+    '1000/500|12|YES|YES|NO|YES|NO|NO|NO': 'FTOT457-1000',
+    '1000/500|12|YES|NO|YES|NO|YES|NO|NO': 'FTOT458-1000',
+    '1000/500|12|YES|NO|YES|YES|NO|NO|NO': 'FTOT459-1000',
+};
+
+/**
+ * Look up MKT Code from the current plan + add-on combination.
+ * @param {string} speed    – e.g. '1000/500 Mbps' or '500/500' (trailing ' Mbps' is stripped)
+ * @param {number} contract – 12 or 24
+ * @param {object} addOns   – { mobilePack: bool, cctv: string|null, tvPack: string|null }
+ *                             (meshWifi is ignored — not in CSV)
+ * @returns {string} MKT Code or 'UNKNOWN'
+ */
+function lookupMktCode(speed, contract, addOns) {
+    // Normalise speed: "1000/500 Mbps" → "1000/500", "500/500 Mbps" → "500/500"
+    const spd = speed.replace(/\s*Mbps\s*/i, '').trim();
+    const yn = (v) => v ? 'YES' : 'NO';
+    const key = [
+        spd,
+        contract,
+        yn(addOns.mobilePack),
+        yn(addOns.cctv === 'cctv_basic'),
+        yn(addOns.cctv === 'cctv_premium'),
+        yn(addOns.tvPack === 'asian_combo_plus'),
+        yn(addOns.tvPack === 'now_ent_plus'),
+        yn(addOns.tvPack === 'asian_combo'),
+        yn(addOns.tvPack === 'now_ent'),
+    ].join('|');
+    return MKT_CODE_MAP[key] || 'UNKNOWN';
+}
+
+/**
+ * Derive add-on flags from a preset package's activeAddons array.
+ * Used for preset/BU-code packages that don't come from the configurator.
+ * @param {Array} activeAddons – e.g. [{ label: 'CCTV 1 ตัว', price: 99 }, …]
+ * @returns {object} – { mobilePack, cctv, tvPack } matching store shape
+ */
+function deriveAddonsFromPreset(activeAddons) {
+    const result = { mobilePack: false, cctv: null, tvPack: null };
+    for (const a of activeAddons) {
+        // Match by label (same labels used in ADDON_PRICES)
+        if (a.label === ADDON_PRICES.mobilePack.label) result.mobilePack = true;
+        else if (a.label === ADDON_PRICES.cctv_basic.label && a.price === ADDON_PRICES.cctv_basic.price) result.cctv = 'cctv_basic';
+        else if (a.label === ADDON_PRICES.cctv_premium.label) result.cctv = 'cctv_premium';
+        else if (a.label === ADDON_PRICES.asian_combo_plus.label) result.tvPack = 'asian_combo_plus';
+        else if (a.label === ADDON_PRICES.asian_combo.label) result.tvPack = 'asian_combo';
+        else if (a.label === ADDON_PRICES.now_ent_plus.label) result.tvPack = 'now_ent_plus';
+        else if (a.label === ADDON_PRICES.now_ent.label) result.tvPack = 'now_ent';
+    }
+    return result;
+}
+
 /* ── Image assets (Figma-exported, replace with local paths for prod) ── */
 const ASSETS = {};
 
@@ -148,10 +356,11 @@ document.addEventListener('alpine:init', () => {
 
         /** Serialize current selection → sessionStorage (called before navigating to summary) */
         persistToSession() {
+            const plan = this.selectedPlan;
             const snapshot = {
                 selectedPlanId: this.selectedPlanId,
                 addOns: JSON.parse(JSON.stringify(this.addOns)),
-                plan: this.selectedPlan,
+                plan: plan,
                 activeAddons: this.activeAddons,
                 addonTotal: this.addonTotal,
                 total: this.total,
@@ -159,6 +368,8 @@ document.addEventListener('alpine:init', () => {
                 packageCode: PACKAGE_CODES[this.selectedPlanId] || '',
                 buCode: BU_CODE_SELF_CUSTOM,
                 crmAddons: this.buildCrmAddons(),
+                /* MKT Code */
+                mktCode: plan ? lookupMktCode(plan.speed, plan.contract, this.addOns) : 'UNKNOWN',
             };
             sessionStorage.setItem('myplan_selection', JSON.stringify(snapshot));
         },

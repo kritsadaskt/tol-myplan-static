@@ -423,8 +423,19 @@
               offerSGM: (data && data.crmAddons && data.crmAddons.OfferSGM) || '',
               telcoOffer: (data && data.crmAddons && data.crmAddons.TelcoOffer) || '',
               nonTelcoOffer: (data && data.crmAddons && data.crmAddons.NonTelcoOffer) || '',
-              // LeadSGM Version A
-              leadSGM: 'TOL_MY_PLAN : Price : ' + this.total,
+              // LeadSGM — includes MKT Code from CSV mapping
+              leadSGM: (() => {
+                let mktCode = 'UNKNOWN';
+                if (data && data.mktCode) {
+                  // Configurator flow: mktCode already saved in session
+                  mktCode = data.mktCode;
+                } else if (isPreset && this.plan) {
+                  // Preset package: derive add-ons from the package data
+                  const derivedAddons = deriveAddonsFromPreset(this.activeAddons);
+                  mktCode = lookupMktCode(this.plan.speed, this.plan.contract, derivedAddons);
+                }
+                return 'Price: ' + this.total + ', MKT Code :  ' + mktCode;
+              })(),
               total: this.total,
             };
 
