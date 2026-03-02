@@ -6,7 +6,7 @@ const API_ENDPOINT = (() => {
     const host = window.location.hostname;
     const isLocal = host === 'localhost' || host === '127.0.0.1';
     return isLocal
-        ? '../api.php'
+        ? '/promotion/true-online/api.php'
         : 'https://tol.otters.dev/promotion/true-online/api.php';
 })();
 

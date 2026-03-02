@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.2">
-  <link rel="stylesheet" href="../assets/css/app.css?v=1.0.2">
-  <script src=" ../assets/js/main.js?v=1.0.2">
-  </script>
-  <script defer src=" https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/app.css?v=1.0.2">
+  <script src="/promotion/true-online/assets/js/main.js?v=1.0.2"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>TRUE ONLINE - MY PLAN สรุปรายการ</title>
 </head>
@@ -17,7 +16,7 @@
 
   <!-- Top app bar -->
   <div class="max-w-[1128px] mx-auto px-1">
-    <a href="../myplan/" title="" class="inline-block items-center">
+    <a href="/promotion/true-online/myplan/" title="" class="inline-block items-center">
       <div class="back-btn-inner flex items-center gap-1 h-16 py-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#303C46" />
@@ -30,7 +29,7 @@
   <!-- Hero: Logo + Tagline -->
   <div class="max-w-[1128px] mx-auto text-center pb-4 md:pb-10">
     <div class="w-full">
-      <img src="../assets/images/myplan-logo.png" alt="MY Plan"
+      <img src="/promotion/true-online/assets/images/myplan-logo.png" alt="MY Plan"
         class="w-[210px] max-w-[1128px] h-auto object-contain mx-auto">
     </div>
     <div class="px-4">
@@ -94,7 +93,7 @@
               <template x-if="!plan">
                 <div class="py-6 text-center">
                   <p class="text-[14px] text-[rgba(48,60,70,0.5)]">ยังไม่ได้เลือกแพ็กเกจ</p>
-                  <a href="../myplan/" class="text-true-blue text-[14px] font-medium mt-2 inline-block">←
+                  <a href="/promotion/true-online/myplan/" class="text-true-blue text-[14px] font-medium mt-2 inline-block">←
                     กลับไปเลือกแพ็กเกจ</a>
                 </div>
               </template>
@@ -468,7 +467,7 @@
                 body: JSON.stringify(payload),
               });
               if (!res.ok) throw new Error('Server error: ' + res.status);
-              window.location.href = '../myplan-thank-you/';
+              window.location.href = '/promotion/true-online/myplan-thank-you/';
             } catch (err) {
               this.apiError = 'ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง';
               console.error('Lead submit error:', err);

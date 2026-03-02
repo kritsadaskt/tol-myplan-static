@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.2">
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.2">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
-  <script src="../assets/js/main.js?v=1.0.2"></script>
+  <script src="/promotion/true-online/assets/js/main.js?v=1.0.2"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>TRUE ONLINE - MY PLAN</title>
@@ -130,15 +130,16 @@
   <!-- Hero Banner -->
   <section id="heroBanner" class="bg-gray-300 w-full">
     <picture>
-      <source media="(max-width: 702px)" srcset="../assets/images/myplan-hero-banner-mobile.png">
-      <img src="../assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN" class="w-full h-auto object-cover">
+      <source media="(max-width: 702px)" srcset="/promotion/true-online/assets/images/myplan-hero-banner-mobile.png">
+      <img src="/promotion/true-online/assets/images/myplan-hero-banner.png" alt="TRUE ONLINE - MY PLAN"
+        class="w-full h-auto object-cover">
     </picture>
   </section>
 
   <!-- Logo + Tagline -->
   <div class="bg-[#fafafa]" :style="$store.plan.hasSelection ? 'padding-bottom: 160px' : ''">
     <div class="max-w-[1128px] mx-auto px-4 pt-10 pb-4 text-center">
-      <img src="../assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN"
+      <img src="/promotion/true-online/assets/images/myplan-logo.png" alt="TRUE ONLINE - MY PLAN"
         class="w-[210px] sm:w-[360px] h-auto object-contain mx-auto mb-4">
       <h2 class="text-[24px] sm:text-[40px] font-bold text-flowkit-red leading-tight">เลือกที่ใช่ จัดได้ตามใจคุณ</h2>
       <h3 class="text-[16px] sm:text-[32px] font-medium text-charcoal-grey leading-tight">กับเน็ตบ้านไฟเบอร์ที่ดีที่สุด
@@ -158,7 +159,7 @@
                 class="step-header-circle bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
                 1</div>
               <!-- Mobile: icon -->
-              <img src="../assets/images/ic-phone-step1.png" alt=""
+              <img src="/promotion/true-online/assets/images/ic-phone-step1.png" alt=""
                 class="step-header-icon hidden w-8 h-8 shrink-0 object-contain">
               <h3 class="text-[20px] sm:text-2xl font-bold gradient-text">เลือกความเร็ว และระยะสัญญา</h3>
             </div>
@@ -175,7 +176,7 @@
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
                   <!-- speed icon placeholder -->
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                  <img src="/promotion/true-online/assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
                     class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
@@ -203,7 +204,7 @@
                     x-model="$store.plan.selectedPlanId">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                  <img src="/promotion/true-online/assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
                     class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
@@ -234,7 +235,7 @@
                     x-model="$store.plan.selectedPlanId">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                  <img src="/promotion/true-online/assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
                     class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
@@ -262,7 +263,7 @@
                     x-model="$store.plan.selectedPlanId">
                 </div>
                 <div class="w-10 h-10 shrink-0 flex items-center justify-center">
-                  <img src="../assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
+                  <img src="/promotion/true-online/assets/images/shortcut-speedtest.png" alt="1000/500 Mbps"
                     class="w-10 h-10 object-contain">
                 </div>
                 <div class="flex-1 min-w-0">
@@ -304,7 +305,7 @@
                 class="step-header-circle bg-gradient-ci text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold shrink-0">
                 2</div>
               <!-- Mobile: icon -->
-              <img src="../assets/images/ic-phone-step2.png" alt=""
+              <img src="/promotion/true-online/assets/images/ic-phone-step2.png" alt=""
                 class="step-header-icon hidden w-8 h-8 shrink-0 object-contain">
               <div class="flex items-baseline gap-2">
                 <h3 class="text-[20px] sm:text-2xl font-bold gradient-text">เลือกบริการเสริม</h3>
@@ -326,7 +327,8 @@
                       x-model="$store.plan.addOns.mobilePack"
                       @change="$store.plan.requirePlan(() => { $store.plan.addOns.mobilePack = false })">
                   </div>
-                  <img src="../assets/images/sim-true.png" alt="sim-true" class="w-10 h-10 object-contain">
+                  <img src="/promotion/true-online/assets/images/sim-true.png" alt="sim-true"
+                    class="w-10 h-10 object-contain">
                   <div class="flex-1">
                     <span class="text-[16px] font-bold text-charcoal-grey">ซิมเน็ตเต็มสปีด 20GB</span>
                   </div>
@@ -359,7 +361,7 @@
                       x-model="$store.plan.addOns.meshWifi"
                       @change="$store.plan.requirePlan(() => { $store.plan.addOns.meshWifi = false })">
                   </div>
-                  <img src="../assets/images/mesh.png" alt="mesh" class="w-10 h-10 object-contain">
+                  <img src="/promotion/true-online/assets/images/mesh.png" alt="mesh" class="w-10 h-10 object-contain">
                   <div class="flex-1">
                     <span class="text-[16px] font-bold text-charcoal-grey">MESH WiFi 1 จุด</span>
                   </div>
@@ -404,13 +406,15 @@
                     </div>
                     <div class="flex-1 flex flex-col gap-3">
                       <div class="flex items-center gap-3">
-                        <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
+                        <img src="/promotion/true-online/assets/images/cctv.png" alt="cctv"
+                          class="w-10 h-10 object-contain">
                         <div>
                           <p class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</p>
                         </div>
                       </div>
                       <div class="flex items-center gap-3">
-                        <img src="../assets/images/insurance.png" alt="insurance" class="w-10 h-10 object-contain">
+                        <img src="/promotion/true-online/assets/images/insurance.png" alt="insurance"
+                          class="w-10 h-10 object-contain">
                         <div>
                           <p class="text-[16px] font-bold text-charcoal-grey">ประกันอัคคีภัย</p>
                           <p class="text-[12px] text-[rgba(48,60,70,0.7)]">(คุ้มครองสูงสุด 450,000 บ.)</p>
@@ -442,7 +446,8 @@
                       <input type="radio" name="addon_cctv" value="cctv_basic"
                         class="accent-tol-red w-5 h-5 pointer-events-none">
                     </div>
-                    <img src="../assets/images/cctv.png" alt="cctv" class="w-10 h-10 object-contain">
+                    <img src="/promotion/true-online/assets/images/cctv.png" alt="cctv"
+                      class="w-10 h-10 object-contain">
                     <div class="flex-1">
                       <span class="text-[16px] font-bold text-charcoal-grey">CCTV 1 ตัว</span>
                     </div>
@@ -490,15 +495,19 @@
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-2 sm:gap-4">
-                          <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
-                          <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
-                          <img src="../assets/images/iqiyi.png" alt="iqiyi" class="w-10 h-10 object-contain">
+                          <img src="/promotion/true-online/assets/images/true-id.png" alt="true-id"
+                            class="w-10 h-10 object-contain">
+                          <img src="/promotion/true-online/assets/images/viu.png" alt="viu"
+                            class="w-10 h-10 object-contain">
+                          <img src="/promotion/true-online/assets/images/iqiyi.png" alt="iqiyi"
+                            class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">Asian Combo</p>
                           </div>
                         </div>
                         <div class="flex items-center gap-3">
-                          <img src="../assets/images/trueid-box.png" alt="trueid-box" class="w-10 h-10 object-contain">
+                          <img src="/promotion/true-online/assets/images/trueid-box.png" alt="trueid-box"
+                            class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
                           </div>
@@ -533,9 +542,12 @@
                         <input type="radio" name="addon_tv" value="asian_combo"
                           class="accent-tol-red w-5 h-5 pointer-events-none">
                       </div>
-                      <img src="../assets/images/true-id.png" alt="true-id" class="w-10 h-10 object-contain">
-                      <img src="../assets/images/viu.png" alt="viu" class="w-10 h-10 object-contain">
-                      <img src="../assets/images/iqiyi.png" alt="iqiyi" class="w-10 h-10 object-contain">
+                      <img src="/promotion/true-online/assets/images/true-id.png" alt="true-id"
+                        class="w-10 h-10 object-contain">
+                      <img src="/promotion/true-online/assets/images/viu.png" alt="viu"
+                        class="w-10 h-10 object-contain">
+                      <img src="/promotion/true-online/assets/images/iqiyi.png" alt="iqiyi"
+                        class="w-10 h-10 object-contain">
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">Asian Combo</span>
                       </div>
@@ -570,14 +582,15 @@
                       </div>
                       <div class="flex-1 flex flex-col gap-3">
                         <div class="flex items-center gap-3">
-                          <img src="../assets/images/true-now-ent.png" alt="true-now-ent"
+                          <img src="/promotion/true-online/assets/images/true-now-ent.png" alt="true-now-ent"
                             class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</p>
                           </div>
                         </div>
                         <div class="flex items-center gap-3">
-                          <img src="../assets/images/trueid-box.png" alt="trueid-box" class="w-10 h-10 object-contain">
+                          <img src="/promotion/true-online/assets/images/trueid-box.png" alt="trueid-box"
+                            class="w-10 h-10 object-contain">
                           <div>
                             <p class="text-[16px] font-bold text-charcoal-grey">พร้อมกล่อง TrueID TV</p>
                           </div>
@@ -610,7 +623,8 @@
                         <input type="radio" name="addon_tv" value="now_ent"
                           class="accent-tol-red w-5 h-5 pointer-events-none">
                       </div>
-                      <img src="../assets/images/true-now-ent.png" alt="true-now-ent" class="w-10 h-10 object-contain">
+                      <img src="/promotion/true-online/assets/images/true-now-ent.png" alt="true-now-ent"
+                        class="w-10 h-10 object-contain">
                       <div class="flex-1">
                         <span class="text-[16px] font-bold text-charcoal-grey">TrueVisions NOW ENT</span>
                       </div>
@@ -645,7 +659,8 @@
       <div class="flex items-center justify-between gap-6">
         <a href="https://www.true.th/promotion/true-online/now-ent" title="NOW ENT" rel="noopener noreferrer"
           class="w-full h-full">
-          <img src="../assets/images/entertainment-banner.png" alt="NOW ENT" class="w-full h-full object-contain">
+          <img src="/promotion/true-online/assets/images/entertainment-banner.png" alt="NOW ENT"
+            class="w-full h-full object-contain">
         </a>
       </div>
     </section>
@@ -660,7 +675,7 @@
         <div class="swiper-wrapper">
           <!-- Card 1: BU-18319 MyPlan_true_prvlg_500/500_SIM20GB_CCTV_VIU_IQ_TID_24M_749 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18319&pkg=500/500_24M_749&price=749&name=MyPlan+True+Privilege+500/500+SIM20GB+CCTV+VIU+IQ+TID+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18319&pkg=500/500_24M_749&price=749&name=MyPlan+True+Privilege+500/500+SIM20GB+CCTV+VIU+IQ+TID+24M"
               class="rec-pkg-card relative block">
               <div class="flex flex-col px-4 pb-4 absolute bottom-0 left-0 right-0">
                 <div class="flex items-center justify-between">
@@ -675,13 +690,13 @@
                 </div>
                 <p class="text-[11px] text-charcoal-grey mt-1">ค่าบริการปกติ 857 บาท/เดือน</p>
               </div>
-              <img src="../assets/images/recommended-package-1.png" alt="Package 1"
+              <img src="/promotion/true-online/assets/images/recommended-package-1.png" alt="Package 1"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 2: BU-18320 MyPlan_true_prvlg_500/500_CCTV_VIU_IQ_TID_24M_649 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18320&pkg=500/500_24M_649&price=649&name=MyPlan+True+Privilege+500/500+CCTV+VIU+IQ+TID+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18320&pkg=500/500_24M_649&price=649&name=MyPlan+True+Privilege+500/500+CCTV+VIU+IQ+TID+24M"
               class="rec-pkg-card relative block">
               <div class="flex flex-col px-4 pb-4 absolute bottom-0 left-0 right-0">
                 <div class="flex items-center justify-between">
@@ -696,13 +711,13 @@
                 </div>
                 <p class="text-[11px] text-charcoal-grey mt-1">ค่าบริการปกติ 737 บาท/เดือน</p>
               </div>
-              <img src="../assets/images/recommended-package-2.png" alt="Package 2"
+              <img src="/promotion/true-online/assets/images/recommended-package-2.png" alt="Package 2"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 3: BU-18321 MyPlan_true_prvlg_500/500_CCTV_24M_549 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18321&pkg=500/500_24M_549&price=549&name=MyPlan+True+Privilege+500/500+CCTV+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18321&pkg=500/500_24M_549&price=549&name=MyPlan+True+Privilege+500/500+CCTV+24M"
               class="rec-pkg-card relative block">
               <div class="flex flex-col px-4 pb-4 absolute bottom-0 left-0 right-0">
                 <div class="flex items-center justify-between">
@@ -717,7 +732,7 @@
                 </div>
                 <p class="text-[11px] text-charcoal-grey mt-1">ค่าบริการปกติ 598 บาท/เดือน</p>
               </div>
-              <img src="../assets/images/recommended-package-3.png" alt="Package 3"
+              <img src="/promotion/true-online/assets/images/recommended-package-3.png" alt="Package 3"
                 class="w-full h-auto object-contain">
             </a>
           </div>
@@ -736,7 +751,7 @@
         <div class="swiper-wrapper">
           <!-- Card 1: BU-18117 MyPlan_STL_500/500_CCTV_24M_598 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18117&pkg=500/500_24M_598&price=598&name=MyPlan+500/500+CCTV+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18117&pkg=500/500_24M_598&price=598&name=MyPlan+500/500+CCTV+24M"
               class="rec-pkg-card relative block">
               <div class="flex items-center justify-between px-4 pb-4 absolute bottom-3 left-0 right-0">
                 <div class="inline-flex items-center gap-2">
@@ -748,13 +763,13 @@
                 </div>
                 <span class="bg-tol-red text-white font-bold text-[13px] px-5 py-2 rounded-full">ซื้อเลย</span>
               </div>
-              <img src="../assets/images/recommended-package-1.png" alt="Package 1"
+              <img src="/promotion/true-online/assets/images/recommended-package-1.png" alt="Package 1"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 2: BU-18115 MyPlan_STL_500/500_Mesh_24M_599 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18115&pkg=500/500_24M_599&price=599&name=MyPlan+500/500+Mesh+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18115&pkg=500/500_24M_599&price=599&name=MyPlan+500/500+Mesh+24M"
               class="rec-pkg-card relative block">
               <div class="flex items-center justify-between px-4 pb-4 absolute bottom-3 left-0 right-0">
                 <div class="inline-flex items-center gap-2">
@@ -766,13 +781,13 @@
                 </div>
                 <span class="bg-tol-red text-white font-bold text-[13px] px-5 py-2 rounded-full">ซื้อเลย</span>
               </div>
-              <img src="../assets/images/recommended-package-2.png" alt="Package 2"
+              <img src="/promotion/true-online/assets/images/recommended-package-2.png" alt="Package 2"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 3: BU-18119 MyPlan_STL_500/500_NOWENT_24M_598 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18119&pkg=500/500_24M_598&price=598&name=MyPlan+500/500+NOWENT+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18119&pkg=500/500_24M_598&price=598&name=MyPlan+500/500+NOWENT+24M"
               class="rec-pkg-card relative block">
               <div class="flex items-center justify-between px-4 pb-4 absolute bottom-3 left-0 right-0">
                 <div class="inline-flex items-center gap-2">
@@ -784,13 +799,13 @@
                 </div>
                 <span class="bg-tol-red text-white font-bold text-[13px] px-5 py-2 rounded-full">ซื้อเลย</span>
               </div>
-              <img src="../assets/images/recommended-package-3.png" alt="Package 3"
+              <img src="/promotion/true-online/assets/images/recommended-package-3.png" alt="Package 3"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 4: BU-18118 MyPlan_STL_500/500_VIU_IQ_TID_24M_638 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18118&pkg=500/500_24M_638&price=638&name=MyPlan+500/500+VIU+IQ+TID+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18118&pkg=500/500_24M_638&price=638&name=MyPlan+500/500+VIU+IQ+TID+24M"
               class="rec-pkg-card relative block">
               <div class="flex items-center justify-between px-4 pb-4 absolute bottom-3 left-0 right-0">
                 <div class="inline-flex items-center gap-2">
@@ -802,13 +817,13 @@
                 </div>
                 <span class="bg-tol-red text-white font-bold text-[13px] px-5 py-2 rounded-full">ซื้อเลย</span>
               </div>
-              <img src="../assets/images/recommended-package-4.png" alt="Package 4"
+              <img src="/promotion/true-online/assets/images/recommended-package-4.png" alt="Package 4"
                 class="w-full h-auto object-contain">
             </a>
           </div>
           <!-- Card 5: BU-18268 MyPlan_2P_500/500_SIM20GB_24M_619 -->
           <div class="swiper-slide">
-            <a href="../myplan-summary/?preset=BU-18268&pkg=500/500_24M_619&price=619&name=MyPlan+500/500+SIM20GB+24M"
+            <a href="/promotion/true-online/myplan-summary/?preset=BU-18268&pkg=500/500_24M_619&price=619&name=MyPlan+500/500+SIM20GB+24M"
               class="rec-pkg-card relative block">
               <div class="flex items-center justify-between px-4 pb-4 absolute bottom-3 left-0 right-0">
                 <div class="inline-flex items-center gap-2">
@@ -820,7 +835,7 @@
                 </div>
                 <span class="bg-tol-red text-white font-bold text-[13px] px-5 py-2 rounded-full">ซื้อเลย</span>
               </div>
-              <img src="../assets/images/recommended-package-5.png" alt="Package 5"
+              <img src="/promotion/true-online/assets/images/recommended-package-5.png" alt="Package 5"
                 class="w-full h-auto object-contain">
             </a>
           </div>
@@ -951,7 +966,7 @@
           </div>
           <p class="text-[10px] text-[rgba(48,60,70,0.8)]">(ไม่รวมภาษีมูลค่าเพิ่ม)</p>
         </div>
-        <a :href="'../myplan-summary/' + (new URLSearchParams(window.location.search).get('sale') === '1' ? '?sale=1' : '')"
+        <a :href="'/promotion/true-online/myplan-summary/' + (new URLSearchParams(window.location.search).get('sale') === '1' ? '?sale=1' : '')"
           @click="$store.plan.persistToSession()"
           class="bg-tol-red text-white text-[14px] font-medium tracking-[0.014px] px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">
           ถัดไป
@@ -962,7 +977,7 @@
   </div><!-- /sticky-summary -->
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-  <script src="../assets/js/recommended-packages-swiper.js"></script>
+  <script src="/promotion/true-online/assets/js/recommended-packages-swiper.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var items = document.querySelectorAll('.summary-accordion-item');
