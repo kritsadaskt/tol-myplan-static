@@ -247,6 +247,38 @@
           </span>
         </button>
 
+        <!-- ── DEBUG: Payload Preview (localhost & tol.otters.dev only) ── -->
+        <template x-if="isDebugMode">
+          <div class="w-full mt-4 rounded-[12px] border border-dashed border-[rgba(48,60,70,0.3)] overflow-hidden">
+            <!-- Accordion header -->
+            <button type="button" @click="debugOpen = !debugOpen"
+              class="w-full flex items-center justify-between px-4 py-3 bg-[#f4f6f8] text-left hover:bg-[#eaecef] transition-colors">
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="#303C46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+                <span class="text-[13px] font-mono font-semibold text-charcoal-grey tracking-wide">DEV · CRM Payload
+                  Preview</span>
+                <span class="text-[11px] font-mono text-[rgba(48,60,70,0.5)] ml-1"
+                  x-text="window.location.hostname"></span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="#303C46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                :class="debugOpen ? 'rotate-180' : ''" class="transition-transform shrink-0">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <!-- Accordion body -->
+            <div x-show="debugOpen">
+              <pre
+                class="w-full px-4 py-4 text-[12px] font-mono leading-[1.6] text-[#1a1c1e] bg-[#f9fafb] overflow-x-auto whitespace-pre"
+                x-text="debugPayload"></pre>
+            </div>
+          </div>
+        </template>
+
       </div>
     </div>
   </main>
@@ -380,6 +412,10 @@
           total = 0;
         }
 
+        /* ── Debug mode: only show on localhost / tol.otters.dev ── */
+        const DEBUG_HOSTS = ['localhost', '127.0.0.1', 'tol.otters.dev'];
+        const isDebugMode = DEBUG_HOSTS.includes(window.location.hostname);
+
         return {
           /* Plan data */
           plan,
@@ -399,6 +435,10 @@
             if (data && data.mktCode) return data.mktCode;
             return 'UNKNOWN';
           })(),
+
+          /* Debug mode */
+          isDebugMode,
+          debugOpen: false,
 
           /* Form fields */
           fields: { name: '', surname: '', phone: '' },
@@ -423,42 +463,42 @@
             return Object.keys(this.errors).length === 0;
           },
 
-          async submit() {
-            if (!this.validate()) return;
-            this.loading = true;
-            this.apiError = null;
-
-            // Read UTM from sessionStorage
+          /* Build payload object — shared by submit() and the debug panel */
+          _buildPayload() {
             let utm = { campaign: '', source: '', medium: '' };
             try { utm = JSON.parse(sessionStorage.getItem('myplan_utm')) || utm; } catch (e) { /* ignore */ }
-
-            const payload = {
-              // CRM fields — preset BU code takes priority
+            let mktCode = 'UNKNOWN';
+            if (data && data.mktCode) {
+              mktCode = data.mktCode;
+            } else if (isPreset && this.plan) {
+              const derivedAddons = deriveAddonsFromPreset(this.activeAddons);
+              mktCode = lookupMktCode(this.plan.speed, this.plan.contract, derivedAddons);
+            }
+            return {
               campaignCode: presetBuCode || (data && data.buCode) || 'BU-18269',
               packageCode: presetPkg || (data && data.packageCode) || '',
               firstName: this.fields.name.trim(),
               lastName: this.fields.surname.trim(),
               phone: this.fields.phone.trim(),
               dataSource: [utm.campaign, utm.source, utm.medium].filter(Boolean).join('|'),
-              // Add-on CRM codes (empty for preset packages)
               offerSGM: (data && data.crmAddons && data.crmAddons.OfferSGM) || '',
               telcoOffer: (data && data.crmAddons && data.crmAddons.TelcoOffer) || '',
               nonTelcoOffer: (data && data.crmAddons && data.crmAddons.NonTelcoOffer) || '',
-              // LeadSGM — includes MKT Code from CSV mapping
-              leadSGM: (() => {
-                let mktCode = 'UNKNOWN';
-                if (data && data.mktCode) {
-                  // Configurator flow: mktCode already saved in session
-                  mktCode = data.mktCode;
-                } else if (isPreset && this.plan) {
-                  // Preset package: derive add-ons from the package data
-                  const derivedAddons = deriveAddonsFromPreset(this.activeAddons);
-                  mktCode = lookupMktCode(this.plan.speed, this.plan.contract, derivedAddons);
-                }
-                return 'Price: ' + this.total + ', MKT Code :  ' + mktCode;
-              })(),
+              leadSGM: 'Price: ' + this.total + ', MKT Code : ' + mktCode,
               total: this.total,
             };
+          },
+
+          get debugPayload() {
+            return JSON.stringify(this._buildPayload(), null, 2);
+          },
+
+          async submit() {
+            if (!this.validate()) return;
+            this.loading = true;
+            this.apiError = null;
+
+            const payload = this._buildPayload();
 
             try {
               const res = await fetch(API_ENDPOINT, {
