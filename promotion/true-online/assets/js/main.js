@@ -244,13 +244,14 @@ function lookupMktCode(speed, contract, addOns) {
  * Derive add-on flags from a preset package's activeAddons array.
  * Used for preset/BU-code packages that don't come from the configurator.
  * @param {Array} activeAddons – e.g. [{ label: 'CCTV 1 ตัว', price: 99 }, …]
- * @returns {object} – { mobilePack, cctv, tvPack } matching store shape
+ * @returns {object} – { mobilePack, meshWifi, cctv, tvPack } matching store shape
  */
 function deriveAddonsFromPreset(activeAddons) {
-    const result = { mobilePack: false, cctv: null, tvPack: null };
+    const result = { mobilePack: false, meshWifi: false, cctv: null, tvPack: null };
     for (const a of activeAddons) {
         // Match by label (same labels used in ADDON_PRICES)
         if (a.label === ADDON_PRICES.mobilePack.label) result.mobilePack = true;
+        else if (a.label === ADDON_PRICES.meshWifi.label) result.meshWifi = true;
         else if (a.label === ADDON_PRICES.cctv_basic.label && a.price === ADDON_PRICES.cctv_basic.price) result.cctv = 'cctv_basic';
         else if (a.label === ADDON_PRICES.cctv_premium.label) result.cctv = 'cctv_premium';
         else if (a.label === ADDON_PRICES.asian_combo_plus.label) result.tvPack = 'asian_combo_plus';

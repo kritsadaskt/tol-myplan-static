@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.4">
-  <link rel="stylesheet" href="/promotion/true-online/assets/css/app.css?v=1.0.4">
-  <script src="/promotion/true-online/assets/js/main.js?v=1.0.4"></script>
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.5">
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/app.css?v=1.0.5">
+  <script src="/promotion/true-online/assets/js/main.js?v=1.0.5"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>TRUE ONLINE - MY PLAN สรุปรายการ</title>
@@ -467,13 +467,35 @@
           _buildPayload() {
             let utm = { campaign: '', source: '', medium: '' };
             try { utm = JSON.parse(sessionStorage.getItem('myplan_utm')) || utm; } catch (e) { /* ignore */ }
+
+            /* ── Derive CRM add-on codes ── */
+            let offerSGM = '', telcoOffer = '', nonTelcoOffer = '';
+            if (isPreset) {
+              // Preset package: derive codes from the preset's own activeAddons
+              // (never read from sessionStorage which may have leftover values)
+              const derived = deriveAddonsFromPreset(this.activeAddons);
+              if (derived.mobilePack) offerSGM = ADDON_CRM_CODES.mobilePack.code;
+              const telcoCodes = [];
+              if (derived.meshWifi) telcoCodes.push(ADDON_CRM_CODES.meshWifi.code);
+              if (derived.cctv && ADDON_CRM_CODES[derived.cctv]) telcoCodes.push(ADDON_CRM_CODES[derived.cctv].code);
+              telcoOffer = telcoCodes.join(' | ');
+              if (derived.tvPack && ADDON_CRM_CODES[derived.tvPack]) nonTelcoOffer = ADDON_CRM_CODES[derived.tvPack].code;
+            } else if (data && data.crmAddons) {
+              // Regular plan: use the CRM codes persisted from the configurator
+              offerSGM = data.crmAddons.OfferSGM || '';
+              telcoOffer = data.crmAddons.TelcoOffer || '';
+              nonTelcoOffer = data.crmAddons.NonTelcoOffer || '';
+            }
+
+            /* ── MKT Code ── */
             let mktCode = 'UNKNOWN';
-            if (data && data.mktCode) {
-              mktCode = data.mktCode;
-            } else if (isPreset && this.plan) {
+            if (isPreset && this.plan && this.plan.contract) {
               const derivedAddons = deriveAddonsFromPreset(this.activeAddons);
               mktCode = lookupMktCode(this.plan.speed, this.plan.contract, derivedAddons);
+            } else if (data && data.mktCode) {
+              mktCode = data.mktCode;
             }
+
             return {
               campaignCode: presetBuCode || (data && data.buCode) || 'BU-18269',
               packageCode: presetPkg || (data && data.packageCode) || '',
@@ -481,9 +503,9 @@
               lastName: this.fields.surname.trim(),
               phone: this.fields.phone.trim(),
               dataSource: [utm.campaign, utm.source, utm.medium].filter(Boolean).join('|'),
-              offerSGM: (data && data.crmAddons && data.crmAddons.OfferSGM) || '',
-              telcoOffer: (data && data.crmAddons && data.crmAddons.TelcoOffer) || '',
-              nonTelcoOffer: (data && data.crmAddons && data.crmAddons.NonTelcoOffer) || '',
+              offerSGM,
+              telcoOffer,
+              nonTelcoOffer,
               leadSGM: 'Price: ' + this.total + ', MKT Code : ' + mktCode,
               total: this.total,
             };
