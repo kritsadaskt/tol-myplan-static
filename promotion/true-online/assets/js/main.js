@@ -342,12 +342,14 @@ document.addEventListener('alpine:init', () => {
             if (this.addOns.mobilePack) {
                 result.OfferSGM = ADDON_CRM_CODES.mobilePack.code;
             }
+            const telcoCodes = [];
             if (this.addOns.meshWifi) {
-                result.TelcoOffer = ADDON_CRM_CODES.meshWifi.code;
+                telcoCodes.push(ADDON_CRM_CODES.meshWifi.code);
             }
             if (this.addOns.cctv && ADDON_CRM_CODES[this.addOns.cctv]) {
-                result.TelcoOffer = ADDON_CRM_CODES[this.addOns.cctv].code;
+                telcoCodes.push(ADDON_CRM_CODES[this.addOns.cctv].code);
             }
+            result.TelcoOffer = telcoCodes.join(' | ');
             if (this.addOns.tvPack && ADDON_CRM_CODES[this.addOns.tvPack]) {
                 result.NonTelcoOffer = ADDON_CRM_CODES[this.addOns.tvPack].code;
             }
