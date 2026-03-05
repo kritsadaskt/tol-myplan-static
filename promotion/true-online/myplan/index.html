@@ -1024,6 +1024,70 @@
     });
   </script>
 
+  <!-- ══════════════════════════════════════════ -->
+  <!-- srcdoc iframe sticky-bar fix             -->
+  <!-- When the page is embedded via srcdoc the  -->
+  <!-- iframe has no scroll of its own, so       -->
+  <!-- position:fixed anchors to the iframe's    -->
+  <!-- document bottom instead of the browser    -->
+  <!-- viewport. We detect that case and switch  -->
+  <!-- to position:absolute + parent-scroll JS.  -->
+  <!-- ══════════════════════════════════════════ -->
+  <script>
+    (function () {
+      // Only activate inside an iframe on the same origin.
+      if (window.parent === window) return;
+
+      var bar = document.querySelector('.sticky-summary');
+      if (!bar) return;
+
+      // The bar must be taken out of the normal fixed flow.
+      // <body> needs a positioning context for absolute children.
+      document.body.style.position = 'relative';
+
+      // Override the CSS position to absolute.
+      bar.style.position = 'absolute';
+      bar.style.left = '0';
+      bar.style.right = '0';
+      bar.style.bottom = 'auto'; // we drive `top` instead
+
+      function reposition() {
+        var parentWin;
+        try {
+          parentWin = window.parent; // throws on cross-origin (safe guard)
+          void parentWin.scrollY;   // probe — throws if cross-origin
+        } catch (e) {
+          return; // cross-origin: can't access parent — bail silently
+        }
+
+        var scrollY = parentWin.scrollY || parentWin.pageYOffset || 0;
+        var parentHeight = parentWin.innerHeight || 0;
+        var barHeight = bar.offsetHeight || 0;
+
+        // Place bar so its bottom aligns with the parent viewport's bottom.
+        bar.style.top = (scrollY + parentHeight - barHeight) + 'px';
+      }
+
+      // Run once the DOM is ready.
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', reposition);
+      } else {
+        reposition();
+      }
+
+      // Track parent scroll & resize (same-origin only).
+      try {
+        window.parent.addEventListener('scroll', reposition, { passive: true });
+        window.parent.addEventListener('resize', reposition, { passive: true });
+      } catch (e) { /* cross-origin guard */ }
+
+      // Also reposition whenever the bar's visibility toggles
+      // (Alpine x-show adds/removes display:none — MutationObserver catches it).
+      var mo = new MutationObserver(reposition);
+      mo.observe(bar, { attributes: true, attributeFilter: ['style'] });
+    })();
+  </script>
+
   <!-- UTM capture on landing -->
   <script>document.addEventListener('DOMContentLoaded', captureUTM);</script>
 
