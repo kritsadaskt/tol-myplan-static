@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.6">
+  <link rel="stylesheet" href="/promotion/true-online/assets/css/styles.css?v=1.0.7">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
-  <script src="/promotion/true-online/assets/js/main.js?v=1.0.6"></script>
+  <script src="/promotion/true-online/assets/js/main.js?v=1.0.7"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>TRUE ONLINE - MY PLAN</title>
@@ -1060,12 +1060,20 @@
           return; // cross-origin: can't access parent — bail silently
         }
 
-        var scrollY = parentWin.scrollY || parentWin.pageYOffset || 0;
-        var parentHeight = parentWin.innerHeight || 0;
         var barHeight = bar.offsetHeight || 0;
 
-        // Place bar so its bottom aligns with the parent viewport's bottom.
-        bar.style.top = (scrollY + parentHeight - barHeight) + 'px';
+        // How far the iframe's top edge is from the browser viewport top.
+        // getBoundingClientRect() is viewport-relative and already
+        // accounts for any parent-page scroll, so parentScrollY is not needed.
+        var frameTop = 0;
+        try {
+          var frameEl = window.frameElement; // accessible same-origin only
+          if (frameEl) frameTop = frameEl.getBoundingClientRect().top;
+        } catch (e) { /* cross-origin guard */ }
+
+        // top_in_iframeDoc = viewportHeight - barHeight - iframeTopFromViewport
+        var top = (parentWin.innerHeight || 0) - barHeight - frameTop;
+        bar.style.top = Math.max(0, top) + 'px';
       }
 
       // Run once the DOM is ready.
