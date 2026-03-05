@@ -10,6 +10,15 @@ const API_ENDPOINT = (() => {
         : 'https://tol.otters.dev/promotion/true-online/api.php';
 })();
 
+/* ── Effective search string ──────────────────────────────────────────────── *
+ * When the page is embedded via srcdoc iframe, window.location.search is "". *
+ * Fall back to the parent window's URL (same-origin only).                   *
+ * ─────────────────────────────────────────────────────────────────────────── */
+const PAGE_SEARCH = window.location.search ||
+    (window.parent !== window
+        ? (function () { try { return window.parent.location.search; } catch (e) { return ''; } }())
+        : '');
+
 /* ── Plans ── */
 const PLANS = [
     { id: 'plan_1', speed: '1000/500 Mbps', contract: 12, price: 699 },
@@ -405,7 +414,7 @@ function loadFromSession() {
  * Called once on the configurator page load.
  */
 function captureUTM() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(PAGE_SEARCH);
     const utm = {
         campaign: params.get('utm_campaign') || '',
         source: params.get('utm_source') || '',
